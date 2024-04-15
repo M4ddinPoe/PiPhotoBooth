@@ -1,0 +1,11 @@
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.FileSystem/bin/Debug/net8.0/PiPhotoBooth.Repository.FileSystem.deps.json
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.FileSystem/bin/Debug/net8.0/PiPhotoBooth.Repository.FileSystem.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.FileSystem/bin/Debug/net8.0/PiPhotoBooth.Repository.FileSystem.pdb
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.FileSystem/obj/Debug/net8.0/PiPhotoBooth.Repository.FileSystem.GeneratedMSBuildEditorConfig.editorconfig
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.FileSystem/obj/Debug/net8.0/PiPhotoBooth.Repository.FileSystem.AssemblyInfoInputs.cache
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.FileSystem/obj/Debug/net8.0/PiPhotoBooth.Repository.FileSystem.AssemblyInfo.cs
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.FileSystem/obj/Debug/net8.0/PiPhotoBooth.Repository.FileSystem.csproj.CoreCompileInputs.cache
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.FileSystem/obj/Debug/net8.0/PiPhotoBooth.Repository.FileSystem.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.FileSystem/obj/Debug/net8.0/refint/PiPhotoBooth.Repository.FileSystem.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.FileSystem/obj/Debug/net8.0/PiPhotoBooth.Repository.FileSystem.pdb
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.FileSystem/obj/Debug/net8.0/ref/PiPhotoBooth.Repository.FileSystem.dll

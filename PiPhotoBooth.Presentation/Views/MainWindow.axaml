@@ -1,0 +1,92 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PiPhotoBooth.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+        xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="PiPhotoBooth.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="PiPhotoBooth.Presentation">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <TabControl>
+        <TabControl.Items>
+            <TabItem Header="Photo">
+                <Grid x:Name="PhotoTab">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <TextBlock 
+                        x:Name="CountdownLabel"
+                        Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsVisible="False"
+                        FontSize="64"
+                        Foreground="RoyalBlue"
+                        Text="3" />
+                    <ProgressBar 
+                        x:Name="ProgressBar"
+                        Grid.Row="0"
+                        Height="200" 
+                        Width="200"
+                        Classes="circular" 
+                        ShowProgressText="False"
+                        IsVisible="False" />
+                    
+                    <controls:FloatingButton 
+                        x:Name="PhotoButton"
+                        Grid.Row="0" 
+                        Height="100"
+                        Width="100"
+                        Classes="Light"
+                        Click="PhotoButton_OnClick"
+                        Tapped="PhotoButton_OnTapped">
+                        <Viewbox Stretch="Fill"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch">
+                            <avalonia:MaterialIcon Kind="Photography" Width="32" Height="32" />
+                        </Viewbox>
+                    </controls:FloatingButton>
+                    
+                    <WrapPanel 
+                        Grid.Row="1" 
+                        HorizontalAlignment="Center">
+                        <RadioButton 
+                            GroupName="WaitSeconds" 
+                            Margin="10 0" 
+                            Classes="accent" 
+                            IsChecked="True" 
+                            Tag="3"
+                            IsCheckedChanged="ToggleButton_OnIsCheckedChanged">3 Sekunden</RadioButton>
+                        <RadioButton 
+                            GroupName="WaitSeconds" 
+                            Margin="10 0" 
+                            Classes="accent" 
+                            Tag="5"
+                            IsCheckedChanged="ToggleButton_OnIsCheckedChanged">5 Sekunden</RadioButton>
+                        <RadioButton 
+                            GroupName="WaitSeconds" 
+                            Margin="10 0" 
+                            Classes="accent" 
+                            Tag="10"
+                            IsCheckedChanged="ToggleButton_OnIsCheckedChanged">10 Sekunden</RadioButton>
+                    </WrapPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Gallery">
+                <TextBlock Classes="Centered" Text="Gallery" />
+            </TabItem>
+        </TabControl.Items>
+    </TabControl>
+
+</Window>
