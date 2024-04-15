@@ -9,3 +9,4 @@
 /Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.Core/obj/Debug/net8.0/refint/PiPhotoBoot.Core.dll
 /Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.Core/obj/Debug/net8.0/PiPhotoBoot.Core.pdb
 /Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.Core/obj/Debug/net8.0/ref/PiPhotoBoot.Core.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.Core/obj/Debug/net8.0/PiPhotoBoot.Core.sourcelink.json

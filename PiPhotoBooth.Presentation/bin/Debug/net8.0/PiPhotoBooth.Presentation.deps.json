@@ -15,7 +15,8 @@
           "Avalonia.ReactiveUI": "11.0.10",
           "Avalonia.Themes.Fluent": "11.0.10",
           "Material.Avalonia": "3.5.0",
-          "Material.Icons.Avalonia": "2.1.9"
+          "Material.Icons.Avalonia": "2.1.9",
+          "PiPhotoBoot.Core": "1.0.0"
         },
         "runtime": {
           "PiPhotoBooth.Presentation.dll": {}
@@ -970,6 +971,11 @@
             "fileVersion": "0.15.0.0"
           }
         }
+      },
+      "PiPhotoBoot.Core/1.0.0": {
+        "runtime": {
+          "PiPhotoBoot.Core.dll": {}
+        }
       }
     }
   },
@@ -1510,6 +1516,11 @@
       "sha512": "sha512-QVo/Y39nTYcCKBqrZuwHjXdwaky0yTQPIT3qUTEEK2MZfDtZWrJ2XyZ59zH8LBgB2fL5cWaTuP2pBTpGz/GeDQ==",
       "path": "tmds.dbus.protocol/0.15.0",
       "hashPath": "tmds.dbus.protocol.0.15.0.nupkg.sha512"
+    },
+    "PiPhotoBoot.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

@@ -135,3 +135,6 @@
 /Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/Material.Styles.dll
 /Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/Material.Icons.dll
 /Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/Material.Icons.Avalonia.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/obj/Debug/net8.0/PiPhotoBooth.Presentation.sourcelink.json
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/PiPhotoBoot.Core.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/PiPhotoBoot.Core.pdb

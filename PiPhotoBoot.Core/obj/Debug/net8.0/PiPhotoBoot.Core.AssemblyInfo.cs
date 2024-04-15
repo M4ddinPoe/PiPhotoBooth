@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PiPhotoBoot.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+625eccdcbf3ea61903441237b7bae674e5287d63")]
 [assembly: System.Reflection.AssemblyProductAttribute("PiPhotoBoot.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PiPhotoBoot.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

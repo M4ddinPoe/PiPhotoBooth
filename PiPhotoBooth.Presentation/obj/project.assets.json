@@ -1434,6 +1434,16 @@
         "runtime": {
           "lib/net6.0/Tmds.DBus.Protocol.dll": {}
         }
+      },
+      "PiPhotoBoot.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/PiPhotoBoot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PiPhotoBoot.Core.dll": {}
+        }
       }
     }
   },
@@ -4629,6 +4639,11 @@
         "tmds.dbus.protocol.0.15.0.nupkg.sha512",
         "tmds.dbus.protocol.nuspec"
       ]
+    },
+    "PiPhotoBoot.Core/1.0.0": {
+      "type": "project",
+      "path": "../PiPhotoBoot.Core/PiPhotoBoot.Core.csproj",
+      "msbuildProject": "../PiPhotoBoot.Core/PiPhotoBoot.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4640,7 +4655,8 @@
       "Avalonia.ReactiveUI >= 11.0.10",
       "Avalonia.Themes.Fluent >= 11.0.10",
       "Material.Avalonia >= 3.5.0",
-      "Material.Icons.Avalonia >= 2.1.9"
+      "Material.Icons.Avalonia >= 2.1.9",
+      "PiPhotoBoot.Core >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4667,7 +4683,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.Core/PiPhotoBoot.Core.csproj": {
+              "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.Core/PiPhotoBoot.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -25,4 +25,8 @@
         <PackageReference Include="Material.Avalonia" Version="3.5.0" />
         <PackageReference Include="Material.Icons.Avalonia" Version="2.1.9" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PiPhotoBoot.Core\PiPhotoBoot.Core.csproj" />
+    </ItemGroup>
 </Project>
