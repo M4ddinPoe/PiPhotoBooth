@@ -1,5 +1,7 @@
 namespace PiPhotoBoot.UseCases;
 
+using PiPhotoBooth.Repository;
+
 public interface IMakePhoto
 {
     Task ExecuteAsync();
@@ -7,10 +9,11 @@ public interface IMakePhoto
 
 public class MakePhoto : IMakePhoto
 {
+    private readonly GPhoto2 gPhoto2 = new();
+    
     public async Task ExecuteAsync()
     {
-        // get current picture number/name
-        // capture-image-and-download --keep-raw --filename /home/pi/ppb/ppb-20240416-0001 
-        await Task.Delay(1000);
+        // get filename
+        this.gPhoto2.CaptureImageAndDownload("");
     }
 }

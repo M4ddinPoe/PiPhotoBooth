@@ -1,6 +1,7 @@
 ﻿namespace PiPhotoBooth.ViewModels;
 
 using System.Threading.Tasks;
+using System.Timers;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using PiPhotoBoot.UseCases;
@@ -8,9 +9,12 @@ using ReactiveUI;
 
 public class MainWindowViewModel : ViewModelBase
 {
+    private readonly ICheckCameraConnected checkCameraConnected;
     private readonly IMakePhoto makePhoto;
     private readonly ILoadLastPhoto loadLastPhoto;
 
+    private IImmutableSolidColorBrush isCameraOnlineBrush;
+    
     private bool isThreeSecondsTimerSelected;
     private bool isFiveSecondsTimerSelected;
     private bool isTenSecondsTimerSelected;
@@ -31,9 +35,12 @@ public class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
+        this.checkCameraConnected = new CheckCameraConnected();
         this.makePhoto = new MakePhoto();
         this.loadLastPhoto = new LoadLastPhoto();
 
+        this.IsCameraOnlineBrush = Brushes.Red;
+        
         this.IsThreeSecondsTimerSelected = true;
         this.IsPhotoButtonVisible = true;
         this.IsCountdownLabelVisible = false;
@@ -42,6 +49,17 @@ public class MainWindowViewModel : ViewModelBase
 
         this.CountdownLabelText = "0";
         this.ProgressBarValue = 100;
+
+        var checkOnlineTimer = new Timer();
+        checkOnlineTimer.Interval = 1000;
+        checkOnlineTimer.Elapsed += CheckOnlineTimerOnElapsed;
+        
+    }
+
+    public IImmutableSolidColorBrush IsCameraOnlineBrush
+    {
+        get => this.isCameraOnlineBrush;
+        set => this.RaiseAndSetIfChanged(ref this.isCameraOnlineBrush, value);
     }
 
     public bool IsThreeSecondsTimerSelected
@@ -119,6 +137,13 @@ public class MainWindowViewModel : ViewModelBase
     public async void PhotoButtonActivated()
     {
         await this.TakeNewPhoto();
+    }
+    
+    private async void CheckOnlineTimerOnElapsed(object? sender, ElapsedEventArgs e)
+    {
+        IsCameraOnlineBrush = await this.checkCameraConnected.ExecuteAsync()
+            ? Brushes.Green
+            : Brushes.Red;
     }
     
     private async Task TakeNewPhoto()

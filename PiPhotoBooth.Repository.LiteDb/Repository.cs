@@ -3,7 +3,7 @@
 using Entities;
 using LiteDB.Async;
 
-internal sealed class Repository : IDisposable
+public sealed class Repository : IDisposable, IRepository
 {
     private readonly LiteDatabaseAsync database;
     

@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {
       "PiPhotoBoot.Core/1.0.0": {
+        "dependencies": {
+          "PiPhotoBooth.GPhoto2": "1.0.0"
+        },
         "runtime": {
           "PiPhotoBoot.Core.dll": {}
+        }
+      },
+      "PiPhotoBooth.GPhoto2/1.0.0": {
+        "runtime": {
+          "PiPhotoBooth.GPhoto2.dll": {}
         }
       }
     }
   },
   "libraries": {
     "PiPhotoBoot.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PiPhotoBooth.GPhoto2/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

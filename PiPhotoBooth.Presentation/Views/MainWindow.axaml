@@ -28,6 +28,18 @@
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
                         
+                        <Canvas 
+                            Width="120" 
+                            Height="120"
+                            Margin="10"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top">
+                            <Ellipse
+                                Width="12"
+                                Height="12"
+                                Fill="Red"></Ellipse> 
+                        </Canvas>
+                        
                         <Image 
                             Source="{Binding LastImage}"
                             IsVisible="{Binding IsLastImageVisible}"
