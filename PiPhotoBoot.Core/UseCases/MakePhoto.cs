@@ -1,9 +1,16 @@
 namespace PiPhotoBoot.UseCases;
 
-public class MakePhoto
+public interface IMakePhoto
 {
-    public Task ExecuteAsync()
+    Task ExecuteAsync();
+}
+
+public class MakePhoto : IMakePhoto
+{
+    public async Task ExecuteAsync()
     {
-        return Task.CompletedTask;
+        // get current picture number/name
+        // capture-image-and-download --keep-raw --filename /home/pi/ppb/ppb-20240416-0001 
+        await Task.Delay(1000);
     }
 }

@@ -8,7 +8,8 @@ using ReactiveUI;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    private readonly ILoadLastPhoto LoadLastPhoto;
+    private readonly IMakePhoto makePhoto;
+    private readonly ILoadLastPhoto loadLastPhoto;
 
     private bool isThreeSecondsTimerSelected;
     private bool isFiveSecondsTimerSelected;
@@ -16,7 +17,9 @@ public class MainWindowViewModel : ViewModelBase
 
     private bool isPhotoButtonVisible;
     private bool isCountdownLabelVisible;
-    private bool isProgressBarVisible;
+    private bool isCountdownProgressBarVisible;
+    
+    private bool isLoadPhotoProgressBarVisible;
 
     private string countdownLabelText;
     private int progressBarValue;
@@ -28,12 +31,14 @@ public class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
-        this.LoadLastPhoto = new LoadLastPhoto();
+        this.makePhoto = new MakePhoto();
+        this.loadLastPhoto = new LoadLastPhoto();
 
         this.IsThreeSecondsTimerSelected = true;
         this.IsPhotoButtonVisible = true;
         this.IsCountdownLabelVisible = false;
-        this.IsProgressBarVisible = false;
+        this.IsCountdownProgressBarVisible = false;
+        this.isLoadPhotoProgressBarVisible = false;
 
         this.CountdownLabelText = "0";
         this.ProgressBarValue = 100;
@@ -69,10 +74,16 @@ public class MainWindowViewModel : ViewModelBase
         private set => this.RaiseAndSetIfChanged(ref this.isCountdownLabelVisible, value);
     }
     
-    public bool IsProgressBarVisible
+    public bool IsCountdownProgressBarVisible
     {
-        get => isProgressBarVisible;
-        private set => this.RaiseAndSetIfChanged(ref this.isProgressBarVisible, value);
+        get => isCountdownProgressBarVisible;
+        private set => this.RaiseAndSetIfChanged(ref this.isCountdownProgressBarVisible, value);
+    }
+    
+    public bool IsLoadPhotoProgressBarVisible
+    {
+        get => isLoadPhotoProgressBarVisible;
+        private set => this.RaiseAndSetIfChanged(ref this.isLoadPhotoProgressBarVisible, value);
     }
     
     public string CountdownLabelText
@@ -107,14 +118,25 @@ public class MainWindowViewModel : ViewModelBase
 
     public async void PhotoButtonActivated()
     {
-        await this.ShowCountdown();
+        await this.TakeNewPhoto();
     }
     
-    private async Task ShowCountdown()
+    private async Task TakeNewPhoto()
     {
         this.IsPhotoButtonVisible = false;
+        
+        await ShowCountdown();
+        await MakePhoto();
+        await ShowPhoto();
+        
+        this.IsPhotoButtonVisible = true;
+        this.LastImage = null;
+    }
+
+    private async Task ShowCountdown()
+    {
         this.IsCountdownLabelVisible = true;
-        this.IsProgressBarVisible = true;
+        this.IsCountdownProgressBarVisible = true;
 
         for (int countdown = this.GetSelectedTimer(); countdown > 0; countdown--)
         {
@@ -127,21 +149,29 @@ public class MainWindowViewModel : ViewModelBase
         }
         
         this.IsCountdownLabelVisible = false;
-        this.IsProgressBarVisible = false;
-        
+        this.IsCountdownProgressBarVisible = false;
+    }
+
+    private async Task MakePhoto()
+    {
         this.PhotoTabBackground = Brushes.White;
         await Task.Delay(150);
         this.PhotoTabBackground = Brushes.Transparent;
 
-        await using var imageStream = this.LoadLastPhoto.Execute();
-        this.LastImage = await Task.Run(() => Bitmap.DecodeToWidth(imageStream, 400));
+        this.IsLoadPhotoProgressBarVisible = true;
+        await this.makePhoto.ExecuteAsync();
+    }
+
+    private async Task ShowPhoto()
+    {
+        await using var imageStream = this.loadLastPhoto.Execute();
+        this.LastImage = await Task.Run(() => Bitmap.DecodeToWidth(imageStream, 1024));
+        
+        this.IsLoadPhotoProgressBarVisible = false;
+
         this.IsLastImageVisible = true;
-
         await Task.Delay(3000);
-
         this.IsLastImageVisible = false;
-        this.IsPhotoButtonVisible = true;
-        this.LastImage = null;
     }
 
     private int GetSelectedTimer()

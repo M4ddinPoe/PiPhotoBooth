@@ -49,8 +49,16 @@
                             Width="200"
                             Classes="circular" 
                             ShowProgressText="False"
-                            IsVisible="{Binding IsProgressBarVisible}"
+                            IsVisible="{Binding IsCountdownProgressBarVisible}"
                             Value="{Binding ProgressBarValue}"/>
+                        
+                        <ProgressBar 
+                            Grid.Row="0" 
+                            Height="200" 
+                            Width="200"
+                            Classes="circular" 
+                            IsVisible="{Binding IsLoadPhotoProgressBarVisible}"
+                            IsIndeterminate="True" />
                         
                         <controls:FloatingButton 
                             x:Name="PhotoButton"

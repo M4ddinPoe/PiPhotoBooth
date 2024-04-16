@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiPhotoBooth.Presentation",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiPhotoBoot.Core", "PiPhotoBoot.Core\PiPhotoBoot.Core.csproj", "{C192A091-B484-49A6-B79D-4B1CFF338982}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiPhotoBooth.Repository.FileSystem", "PiPhotoBooth.Repository.FileSystem\PiPhotoBooth.Repository.FileSystem.csproj", "{C392DA80-87FF-4638-8A34-7ED749F5604E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiPhotoBooth.Repository.LiteDb", "PiPhotoBooth.Repository.LiteDb\PiPhotoBooth.Repository.LiteDb.csproj", "{C392DA80-87FF-4638-8A34-7ED749F5604E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
