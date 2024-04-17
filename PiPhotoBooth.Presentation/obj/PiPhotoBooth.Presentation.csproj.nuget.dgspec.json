@@ -41,6 +41,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "ResultMonad": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -94,6 +104,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "ResultMonad": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -138,6 +154,9 @@
             "projectReferences": {
               "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.Core/PiPhotoBoot.Core.csproj": {
                 "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.Core/PiPhotoBoot.Core.csproj"
+              },
+              "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/PiPhotoBooth.Repository.LiteDb.csproj": {
+                "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/PiPhotoBooth.Repository.LiteDb.csproj"
               }
             }
           }
@@ -183,6 +202,81 @@
             "Material.Icons.Avalonia": {
               "target": "Package",
               "version": "[2.1.9, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "ResultMonad": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/PiPhotoBooth.Repository.LiteDb.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/PiPhotoBooth.Repository.LiteDb.csproj",
+        "projectName": "PiPhotoBooth.Repository.LiteDb",
+        "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/PiPhotoBooth.Repository.LiteDb.csproj",
+        "packagesPath": "/Users/maddin/.nuget/packages/",
+        "outputPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/maddin/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.Core/PiPhotoBoot.Core.csproj": {
+                "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.Core/PiPhotoBoot.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "LiteDB": {
+              "target": "Package",
+              "version": "[5.0.19, )"
+            },
+            "LiteDB.Async": {
+              "target": "Package",
+              "version": "[0.1.7, )"
             }
           },
           "imports": [

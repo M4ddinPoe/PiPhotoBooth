@@ -6,6 +6,7 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using PiPhotoBoot.UseCases;
 using ReactiveUI;
+using ResultMonad;
 
 public class MainWindowViewModel : ViewModelBase
 {
@@ -13,6 +14,9 @@ public class MainWindowViewModel : ViewModelBase
     private readonly IMakePhoto makePhoto;
     private readonly ILoadLastPhoto loadLastPhoto;
 
+    private bool isErrorMessageVisible;
+    private string errorMessage;
+    
     private IImmutableSolidColorBrush isCameraOnlineBrush;
     
     private bool isThreeSecondsTimerSelected;
@@ -33,12 +37,18 @@ public class MainWindowViewModel : ViewModelBase
     private Bitmap? lastImage;
     private bool isLastImageVisible;
 
-    public MainWindowViewModel()
+    public MainWindowViewModel(
+        ILoadLastPhoto loadLastPhoto, 
+        IMakePhoto makePhoto, 
+        ICheckCameraConnected checkCameraConnected)
     {
-        this.checkCameraConnected = new CheckCameraConnected();
-        this.makePhoto = new MakePhoto();
-        this.loadLastPhoto = new LoadLastPhoto();
+        this.loadLastPhoto = loadLastPhoto;
+        this.makePhoto = makePhoto;
+        this.checkCameraConnected = checkCameraConnected;
 
+        this.IsErrorMessageVisible = false;
+        this.ErrorMessage = string.Empty;
+        
         this.IsCameraOnlineBrush = Brushes.Red;
         
         this.IsThreeSecondsTimerSelected = true;
@@ -51,9 +61,24 @@ public class MainWindowViewModel : ViewModelBase
         this.ProgressBarValue = 100;
 
         var checkOnlineTimer = new Timer();
-        checkOnlineTimer.Interval = 1000;
+        checkOnlineTimer.Interval = 2000;
         checkOnlineTimer.Elapsed += CheckOnlineTimerOnElapsed;
-        
+        checkOnlineTimer.Start();
+
+        this.CheckOnlineState();
+
+    }
+    
+    public bool IsErrorMessageVisible
+    {
+        get => this.isErrorMessageVisible;
+        set => this.RaiseAndSetIfChanged(ref this.isErrorMessageVisible, value);
+    }
+    
+    public string ErrorMessage
+    {
+        get => this.errorMessage;
+        set => this.RaiseAndSetIfChanged(ref this.errorMessage, value);
     }
 
     public IImmutableSolidColorBrush IsCameraOnlineBrush
@@ -134,6 +159,13 @@ public class MainWindowViewModel : ViewModelBase
         private set => this.RaiseAndSetIfChanged(ref this.isLastImageVisible, value);
     }
 
+    public async Task CheckOnlineState()
+    {
+        IsCameraOnlineBrush = await this.checkCameraConnected.ExecuteAsync()
+            ? Brushes.Green
+            : Brushes.Red;
+    }
+    
     public async void PhotoButtonActivated()
     {
         await this.TakeNewPhoto();
@@ -141,9 +173,7 @@ public class MainWindowViewModel : ViewModelBase
     
     private async void CheckOnlineTimerOnElapsed(object? sender, ElapsedEventArgs e)
     {
-        IsCameraOnlineBrush = await this.checkCameraConnected.ExecuteAsync()
-            ? Brushes.Green
-            : Brushes.Red;
+        await this.CheckOnlineState();
     }
     
     private async Task TakeNewPhoto()
@@ -151,8 +181,12 @@ public class MainWindowViewModel : ViewModelBase
         this.IsPhotoButtonVisible = false;
         
         await ShowCountdown();
-        await MakePhoto();
-        await ShowPhoto();
+        var result = await MakePhoto();
+        
+        if (result.IsSuccess)
+        {
+            await ShowPhoto();
+        }
         
         this.IsPhotoButtonVisible = true;
         this.LastImage = null;
@@ -177,14 +211,31 @@ public class MainWindowViewModel : ViewModelBase
         this.IsCountdownProgressBarVisible = false;
     }
 
-    private async Task MakePhoto()
+    private async Task<Result> MakePhoto()
     {
         this.PhotoTabBackground = Brushes.White;
         await Task.Delay(150);
         this.PhotoTabBackground = Brushes.Transparent;
 
         this.IsLoadPhotoProgressBarVisible = true;
-        await this.makePhoto.ExecuteAsync();
+        var result = await this.makePhoto.ExecuteAsync();
+
+        if (result.IsFailure)
+        {
+            this.IsLoadPhotoProgressBarVisible = false;
+            
+            this.ErrorMessage = result.Error;
+            this.IsErrorMessageVisible = true;
+
+            await Task.Delay(15000);
+            
+            this.ErrorMessage = string.Empty;
+            this.IsErrorMessageVisible = false;
+            
+            return Result.Fail();
+        }
+        
+        return Result.Ok();
     }
 
     private async Task ShowPhoto()

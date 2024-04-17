@@ -7,31 +7,34 @@ public abstract class BaseCommand
 {
     protected abstract string Command { get; set; }
     
-    protected string ExecuteCommand()
+    protected Task<string> ExecuteCommandAsync()
     {
-        var processStartInfo = new ProcessStartInfo
+        return Task<string>.Run(() =>
         {
-            FileName = OsEnvironment.CommandLineFileName,
-            Arguments = OsEnvironment.CreateCommandExecution(this.Command),
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false,
-            CreateNoWindow = true,
-        };
-        
-        var output = new StringBuilder();
-        using (var process = new Process())
-        {
-            process.StartInfo = processStartInfo;
-            process.OutputDataReceived += (sender, args) => output.AppendLine(args.Data);
-            process.ErrorDataReceived += (sender, args) => output.AppendLine(args.Data);
+            var processStartInfo = new ProcessStartInfo
+            {
+                FileName = OsEnvironment.CommandLineFileName,
+                Arguments = OsEnvironment.CreateCommandExecution(this.Command),
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
 
-            process.Start();
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
-            process.WaitForExit();
-        }
+            var output = new StringBuilder("");
+            using (var process = new Process())
+            {
+                process.StartInfo = processStartInfo;
+                process.OutputDataReceived += (sender, args) => output.AppendLine(args.Data);
+                process.ErrorDataReceived += (sender, args) => output.AppendLine(args.Data);
 
-        return output.ToString();
+                process.Start();
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+                process.WaitForExit();
+            }
+            
+            return output.ToString();
+        });
     }
 }

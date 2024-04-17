@@ -5,7 +5,7 @@ public interface ILoadLastPhoto
     Stream Execute();
 }
 
-public class LoadLastPhoto : ILoadLastPhoto
+internal sealed class LoadLastPhoto : ILoadLastPhoto
 {
     public Stream Execute()
     {

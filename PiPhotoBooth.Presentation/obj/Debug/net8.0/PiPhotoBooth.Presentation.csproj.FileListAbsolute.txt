@@ -280,3 +280,11 @@ C:/Dev/Temp/PiPhotoBooth/PiPhotoBooth.Presentation/obj/Debug/net8.0/PiPhotoBooth
 C:/Dev/Temp/PiPhotoBooth/PiPhotoBooth.Presentation/obj/Debug/net8.0/ref/PiPhotoBooth.Presentation.dll
 /Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/PiPhotoBooth.GPhoto2.dll
 /Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/PiPhotoBooth.GPhoto2.pdb
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/LiteDB.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/LiteDB.Async.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/PiPhotoBooth.Repository.LiteDb.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/PiPhotoBooth.Repository.LiteDb.pdb
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/MaybeMonad.dll
+/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/bin/Debug/net8.0/ResultMonad.dll

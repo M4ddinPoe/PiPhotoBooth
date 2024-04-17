@@ -18,6 +18,19 @@
     </Design.DataContext>
 
     <Grid>
+        
+        <Canvas
+            Width="800"
+            Height="500"
+            Background="IndianRed"
+            IsVisible="{Binding IsErrorMessageVisible}">
+            <TextBlock 
+                Width="780"
+                Height="480"
+                FontSize="18"
+                Text="{Binding ErrorMessage}"/>
+        </Canvas>
+        
         <TabControl>
             <TabControl.Items>
                 <TabItem Header="Photo">
@@ -37,7 +50,7 @@
                             <Ellipse
                                 Width="12"
                                 Height="12"
-                                Fill="Red"></Ellipse> 
+                                Fill="{Binding IsCameraOnlineBrush}"></Ellipse> 
                         </Canvas>
                         
                         <Image 

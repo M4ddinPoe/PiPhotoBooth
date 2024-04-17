@@ -16,7 +16,10 @@
           "Avalonia.Themes.Fluent": "11.0.10",
           "Material.Avalonia": "3.5.0",
           "Material.Icons.Avalonia": "2.1.9",
-          "PiPhotoBoot.Core": "1.0.0"
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "PiPhotoBoot.Core": "1.0.0",
+          "PiPhotoBooth.Repository.LiteDb": "1.0.0",
+          "ResultMonad": "1.0.1"
         },
         "runtime": {
           "PiPhotoBooth.Presentation.dll": {}
@@ -353,6 +356,25 @@
           }
         }
       },
+      "LiteDB/5.0.19": {
+        "runtime": {
+          "lib/netstandard2.0/LiteDB.dll": {
+            "assemblyVersion": "5.0.19.0",
+            "fileVersion": "5.0.19.0"
+          }
+        }
+      },
+      "LiteDB.Async/0.1.7": {
+        "dependencies": {
+          "LiteDB": "5.0.19"
+        },
+        "runtime": {
+          "lib/netstandard2.0/LiteDB.Async.dll": {
+            "assemblyVersion": "0.1.7.0",
+            "fileVersion": "0.1.7.0"
+          }
+        }
+      },
       "Material.Avalonia/3.5.0": {
         "dependencies": {
           "Avalonia": "11.0.10"
@@ -393,6 +415,14 @@
           "lib/netstandard2.0/Material.Icons.Avalonia.dll": {
             "assemblyVersion": "2.1.9.0",
             "fileVersion": "2.1.9.0"
+          }
+        }
+      },
+      "MaybeMonad/1.0.1.1": {
+        "runtime": {
+          "lib/netstandard2.0/MaybeMonad.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -642,6 +672,25 @@
           "System.Threading": "4.3.0"
         }
       },
+      "Microsoft.Extensions.DependencyInjection/8.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
       "Microsoft.NETCore.Platforms/2.1.2": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
       "ReactiveUI/18.3.1": {
@@ -653,6 +702,17 @@
           "lib/net6.0/ReactiveUI.dll": {
             "assemblyVersion": "18.3.0.0",
             "fileVersion": "18.3.1.49589"
+          }
+        }
+      },
+      "ResultMonad/1.0.1": {
+        "dependencies": {
+          "MaybeMonad": "1.0.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/ResultMonad.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -974,15 +1034,30 @@
       },
       "PiPhotoBoot.Core/1.0.0": {
         "dependencies": {
-          "PiPhotoBooth.GPhoto2": "1.0.0"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+          "PiPhotoBooth.GPhoto2": "1.0.0",
+          "ResultMonad": "1.0.1"
         },
         "runtime": {
           "PiPhotoBoot.Core.dll": {}
         }
       },
       "PiPhotoBooth.GPhoto2/1.0.0": {
+        "dependencies": {
+          "ResultMonad": "1.0.1"
+        },
         "runtime": {
           "PiPhotoBooth.GPhoto2.dll": {}
+        }
+      },
+      "PiPhotoBooth.Repository.LiteDb/1.0.0": {
+        "dependencies": {
+          "LiteDB": "5.0.19",
+          "LiteDB.Async": "0.1.7",
+          "PiPhotoBoot.Core": "1.0.0"
+        },
+        "runtime": {
+          "PiPhotoBooth.Repository.LiteDb.dll": {}
         }
       }
     }
@@ -1154,6 +1229,20 @@
       "path": "harfbuzzsharp.nativeassets.win32/7.3.0",
       "hashPath": "harfbuzzsharp.nativeassets.win32.7.3.0.nupkg.sha512"
     },
+    "LiteDB/5.0.19": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-O8XPBptE4SygW2SN6skqg/VDVTrjpJ0p6+i7Cp8x8razbu2ORLSd6ep3JdhDIdL6h57Bcxv2BuVaN70IKpXI0Q==",
+      "path": "litedb/5.0.19",
+      "hashPath": "litedb.5.0.19.nupkg.sha512"
+    },
+    "LiteDB.Async/0.1.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R20oAos4WKFdL9fZ9WtKLyBaH4neMrbP44VBP49Od6ek/Z3GIwc/aZjegs0bLepsgsg2tRzuFFlKJZ6pNGmLkQ==",
+      "path": "litedb.async/0.1.7",
+      "hashPath": "litedb.async.0.1.7.nupkg.sha512"
+    },
     "Material.Avalonia/3.5.0": {
       "type": "package",
       "serviceable": true,
@@ -1174,6 +1263,13 @@
       "sha512": "sha512-Q7LzdUny0DSJRYv6DtjuufFlvSqOZ99bAEaxGez7LKUh4BMrhVQx3Pjo92POFvtsF2k70L724aIMAWe+nOfiFQ==",
       "path": "material.icons.avalonia/2.1.9",
       "hashPath": "material.icons.avalonia.2.1.9.nupkg.sha512"
+    },
+    "MaybeMonad/1.0.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7N+UAyHPlcFd8Xw8ZwCot5GylynDcuVaDNvd258hc99lPjFMFJ2SZhyE7xNrLgKSmSYGX5gtvFCpLW/MrnqV7Q==",
+      "path": "maybemonad/1.0.1.1",
+      "hashPath": "maybemonad.1.0.1.1.nupkg.sha512"
     },
     "MicroCom.Runtime/0.11.0": {
       "type": "package",
@@ -1224,6 +1320,20 @@
       "path": "microsoft.csharp/4.3.0",
       "hashPath": "microsoft.csharp.4.3.0.nupkg.sha512"
     },
+    "Microsoft.Extensions.DependencyInjection/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-V8S3bsm50ig6JSyrbcJJ8bW2b9QLGouz+G1miK3UTaOWmMtFwNNNzUf4AleyDWUmTrWMLNnFSLEQtxmxgNQnNQ==",
+      "path": "microsoft.extensions.dependencyinjection/8.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cjWrLkJXK0rs4zofsK4bSdg+jhDLTaxrkXu4gS6Y7MAlCvRyNNgwY/lJi5RDlQOnSZweHqoyvgvbdvQsRIW+hg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/8.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+    },
     "Microsoft.NETCore.Platforms/2.1.2": {
       "type": "package",
       "serviceable": true,
@@ -1244,6 +1354,13 @@
       "sha512": "sha512-0tclGtjrRPfA2gbjiM7O3DeNmo6/TpDn7CMN6jgzDrbgrnysM7oEzjGEeXbtXaOxH6kEf6RiMKWobZoSgbBXhQ==",
       "path": "reactiveui/18.3.1",
       "hashPath": "reactiveui.18.3.1.nupkg.sha512"
+    },
+    "ResultMonad/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FUPXv68V56E9bd/isJpmaYSh6n8QMuiMoL9T2JqZ4cfzmVd3zQ0lxhCiNR6zY/zxo+ZzKOwN7vnxK/r3z1BKxQ==",
+      "path": "resultmonad/1.0.1",
+      "hashPath": "resultmonad.1.0.1.nupkg.sha512"
     },
     "SkiaSharp/2.88.7": {
       "type": "package",
@@ -1531,6 +1648,11 @@
       "sha512": ""
     },
     "PiPhotoBooth.GPhoto2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PiPhotoBooth.Repository.LiteDb/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

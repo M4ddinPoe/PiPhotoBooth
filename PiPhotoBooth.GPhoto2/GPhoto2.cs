@@ -1,19 +1,20 @@
 namespace PiPhotoBoot;
 
 using Commands;
+using ResultMonad;
 
 public class GPhoto2
 {
     private readonly AutoDetect autoDetect = new();
     private readonly CaptureImageAndDownload captureImageAndDownload = new (); 
     
-    public List<string> AutoDetect()
+    public Task<List<string>> AutoDetectAsync()
     {
-        return this.autoDetect.Execute();
+        return this.autoDetect.ExecuteAsync();
     }
 
-    public void CaptureImageAndDownload(string filename)
+    public async Task<ResultWithError<string>> CaptureImageAndDownloadAsync(string filename)
     {
-        this.captureImageAndDownload.Execute(filename);
+        return await this.captureImageAndDownload.ExecuteAsync(filename);
     }
 }

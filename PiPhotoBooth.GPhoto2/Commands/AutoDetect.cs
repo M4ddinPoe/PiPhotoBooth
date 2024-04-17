@@ -4,7 +4,7 @@ using ResponseParser;
 
 internal sealed class AutoDetect : BaseCommand
 {
-    private readonly AutoDetectParser parser;
+    private readonly AutoDetectParser parser = new();
     
     protected override string Command
     {
@@ -12,9 +12,9 @@ internal sealed class AutoDetect : BaseCommand
         set {}
     }
 
-    public List<string> Execute()
+    public async Task<List<string>> ExecuteAsync()
     {
-        var response = this.ExecuteCommand();
+        var response = await this.ExecuteCommandAsync();
         return this.parser.Execute(response);
     }
 }

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "qr44rmgbQNPkkWsH2OagUNMmjBvnw+Z6XcxO8gvpgxiOef2dshekAXkTscUNWDVGmLh+p8JZxKWgkf3hsGJDfg==",
+  "dgSpecHash": "CU+5w/XGPHheQhiuOfg6J6rFNNthS9YNJ/7oahFLq868y6xlzu1G/i4wm8/HMS6+M42II/Gt2SGJMfPWnGvutQ==",
   "success": true,
   "projectFilePath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.Core/PiPhotoBoot.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/maddin/.nuget/packages/maybemonad/1.0.1.1/maybemonad.1.0.1.1.nupkg.sha512",
+    "/Users/maddin/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/Users/maddin/.nuget/packages/resultmonad/1.0.1/resultmonad.1.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

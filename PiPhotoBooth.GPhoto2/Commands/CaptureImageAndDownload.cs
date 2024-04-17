@@ -1,12 +1,18 @@
 namespace PiPhotoBoot.Commands;
 
+using ResponseParser;
+using ResultMonad;
+
 internal sealed class CaptureImageAndDownload : BaseCommand
 {
+    private readonly CaptureImageAndDownloadParser captureImageAndDownloadParser = new();
     protected override string Command { get; set; }
 
-    public void Execute(string filename)
+    public async Task<ResultWithError<string>> ExecuteAsync(string filename)
     {
-        this.Command = $"capture-image-and-download --keep-raw --filename /home/pi/ppb/{filename}";
-        this.ExecuteCommand();
+        this.Command = $"gphoto2 --capture-image-and-download --keep-raw --filename '/Users/maddin/Photos/{filename}.jpg'";
+        var response = await this.ExecuteCommandAsync();
+
+        return this.captureImageAndDownloadParser.Execute(response);
     }
 }

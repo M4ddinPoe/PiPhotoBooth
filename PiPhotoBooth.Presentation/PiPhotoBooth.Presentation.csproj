@@ -24,9 +24,12 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10"/>
         <PackageReference Include="Material.Avalonia" Version="3.5.0" />
         <PackageReference Include="Material.Icons.Avalonia" Version="2.1.9" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+        <PackageReference Include="ResultMonad" Version="1.0.1" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\PiPhotoBoot.Core\PiPhotoBoot.Core.csproj" />
+      <ProjectReference Include="..\PiPhotoBooth.Repository.LiteDb\PiPhotoBooth.Repository.LiteDb.csproj" />
     </ItemGroup>
 </Project>

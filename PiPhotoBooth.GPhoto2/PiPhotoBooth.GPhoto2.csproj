@@ -9,4 +9,8 @@
     <ItemGroup>
         <InternalsVisibleTo Include="PiPhotoBoot.GPhoto2.Tests" />
     </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ResultMonad" Version="1.0.1" />
+    </ItemGroup>
 </Project>

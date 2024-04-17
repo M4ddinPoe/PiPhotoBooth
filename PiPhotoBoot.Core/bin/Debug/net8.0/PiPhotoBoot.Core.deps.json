@@ -8,13 +8,45 @@
     ".NETCoreApp,Version=v8.0": {
       "PiPhotoBoot.Core/1.0.0": {
         "dependencies": {
-          "PiPhotoBooth.GPhoto2": "1.0.0"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+          "PiPhotoBooth.GPhoto2": "1.0.0",
+          "ResultMonad": "1.0.1"
         },
         "runtime": {
           "PiPhotoBoot.Core.dll": {}
         }
       },
+      "MaybeMonad/1.0.1.1": {
+        "runtime": {
+          "lib/netstandard2.0/MaybeMonad.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
+      "ResultMonad/1.0.1": {
+        "dependencies": {
+          "MaybeMonad": "1.0.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/ResultMonad.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "PiPhotoBooth.GPhoto2/1.0.0": {
+        "dependencies": {
+          "ResultMonad": "1.0.1"
+        },
         "runtime": {
           "PiPhotoBooth.GPhoto2.dll": {}
         }
@@ -26,6 +58,27 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "MaybeMonad/1.0.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7N+UAyHPlcFd8Xw8ZwCot5GylynDcuVaDNvd258hc99lPjFMFJ2SZhyE7xNrLgKSmSYGX5gtvFCpLW/MrnqV7Q==",
+      "path": "maybemonad/1.0.1.1",
+      "hashPath": "maybemonad.1.0.1.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cjWrLkJXK0rs4zofsK4bSdg+jhDLTaxrkXu4gS6Y7MAlCvRyNNgwY/lJi5RDlQOnSZweHqoyvgvbdvQsRIW+hg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/8.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+    },
+    "ResultMonad/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FUPXv68V56E9bd/isJpmaYSh6n8QMuiMoL9T2JqZ4cfzmVd3zQ0lxhCiNR6zY/zxo+ZzKOwN7vnxK/r3z1BKxQ==",
+      "path": "resultmonad/1.0.1",
+      "hashPath": "resultmonad.1.0.1.nupkg.sha512"
     },
     "PiPhotoBooth.GPhoto2/1.0.0": {
       "type": "project",
