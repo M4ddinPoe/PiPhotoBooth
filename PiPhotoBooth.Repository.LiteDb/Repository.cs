@@ -6,41 +6,38 @@ using Mappings;
 using MaybeMonad;
 using Photo = Model.Photo;
 
-public sealed class Repository : IDisposable, IRepository
+public sealed class Repository : IRepository
 {
-    private readonly LiteDatabaseAsync database;
+    private readonly string connectionString;
     
     public Repository()
     {
-        var connection = Path.Combine(Environment.CurrentDirectory, "ppb.db");
-        database = new LiteDatabaseAsync(connection);
-    }
-    
-    ~Repository()
-    {
-        this.Dispose();
+        this.connectionString = Path.Combine(Environment.CurrentDirectory, "ppb.db");
     }
     
     public async Task<int> GetNextIndexAsync()
     {
+        using var database = new LiteDatabaseAsync(this.connectionString);
         var col = database.GetCollection<PhotoIndex>("photo_index");
-            
+
         var currentIndex = await col.Query()
             .Where(x => x.Day == DateTime.Today)
             .FirstOrDefaultAsync();
 
-        return currentIndex == null 
-            ? 1 
-            : currentIndex.LastNumber+1;
+        return currentIndex == null
+            ? 1
+            : currentIndex.LastNumber + 1;
     }
 
     public async Task UpdateIndexAsync(int index)
     {
+        using var database = new LiteDatabaseAsync(this.connectionString);
         var col = database.GetCollection<PhotoIndex>("photo_index");
 
+        var count = await col.Query().CountAsync();
         var photoIndex = new PhotoIndex { Id = 1, Day = DateTime.Today, LastNumber = index };
         
-        if (index == 1)
+        if (count == 0)
         {
             await col.InsertAsync(photoIndex);
         }
@@ -52,6 +49,7 @@ public sealed class Repository : IDisposable, IRepository
 
     public async Task AddPhoto(Photo photo)
     {
+        using var database = new LiteDatabaseAsync(this.connectionString);
         var col = database.GetCollection<Entities.Photo>("photos");
 
         var photoEntity = photo.ToEntity();
@@ -60,6 +58,7 @@ public sealed class Repository : IDisposable, IRepository
 
     public async Task<IEnumerable<Photo>> GetPhotos()
     {
+        using var database = new LiteDatabaseAsync(this.connectionString);
         var col = database.GetCollection<Entities.Photo>("photos");
         var entities = await col.Query().ToListAsync();
 
@@ -68,19 +67,10 @@ public sealed class Repository : IDisposable, IRepository
     
     public async Task<Maybe<Photo>> GetLastPhoto()
     {
+        using var database = new LiteDatabaseAsync(this.connectionString);
         var col = database.GetCollection<Entities.Photo>("photos");
         var entity = await col.Query().OrderByDescending(photo => photo.Taken).FirstOrDefaultAsync();
 
-        if (entity == null)
-        {
-            return Maybe<Photo>.Nothing;
-        }
-        
-        return entity.ToModel();
-    }
-
-    public void Dispose()
-    {
-        database.Dispose();
+        return entity?.ToModel() ?? Maybe<Photo>.Nothing;
     }
 }

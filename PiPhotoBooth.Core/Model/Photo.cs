@@ -1,5 +1,7 @@
 ﻿namespace PiPhotoBooth.Model;
 
+using System.Runtime.CompilerServices;
+
 public sealed class Photo
 {
     public Photo(string path)
@@ -21,4 +23,9 @@ public sealed class Photo
     public DateTime Taken { get; }
     
     public string Path { get; }
+    
+    public async Task<Stream> LoadAsync()
+    {
+        return File.OpenRead(this.Path);
+    }
 }

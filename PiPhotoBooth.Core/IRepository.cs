@@ -14,6 +14,4 @@ public interface IRepository
     Task<IEnumerable<Photo>> GetPhotos();
 
     Task<Maybe<Photo>> GetLastPhoto();
-
-    void Dispose();
 }

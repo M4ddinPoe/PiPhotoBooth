@@ -1,27 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Presentation\\PiPhotoBooth.Presentation.csproj": {}
+    "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj": {}
   },
   "projects": {
-    "C:\\Dev\\Temp\\PiPhotoBooth\\GPhoto2\\GPhoto2.csproj": {
+    "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/GPhoto2/GPhoto2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Temp\\PiPhotoBooth\\GPhoto2\\GPhoto2.csproj",
+        "projectUniqueName": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/GPhoto2/GPhoto2.csproj",
         "projectName": "GPhoto2",
-        "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\GPhoto2\\GPhoto2.csproj",
-        "packagesPath": "C:\\Users\\martin.poepel\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Temp\\PiPhotoBooth\\GPhoto2\\obj\\",
+        "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/GPhoto2/GPhoto2.csproj",
+        "packagesPath": "/Users/maddin/.nuget/packages/",
+        "outputPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/GPhoto2/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\martin.poepel\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/maddin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/advastoreMS/software/_packaging/eCommerce/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
@@ -60,35 +59,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBoot.CameraControl.Faker\\PiPhotoBoot.CameraControl.Faker.csproj": {
+    "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.CameraControl.Faker/PiPhotoBoot.CameraControl.Faker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBoot.CameraControl.Faker\\PiPhotoBoot.CameraControl.Faker.csproj",
+        "projectUniqueName": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.CameraControl.Faker/PiPhotoBoot.CameraControl.Faker.csproj",
         "projectName": "PiPhotoBoot.CameraControl.Faker",
-        "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBoot.CameraControl.Faker\\PiPhotoBoot.CameraControl.Faker.csproj",
-        "packagesPath": "C:\\Users\\martin.poepel\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBoot.CameraControl.Faker\\obj\\",
+        "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.CameraControl.Faker/PiPhotoBoot.CameraControl.Faker.csproj",
+        "packagesPath": "/Users/maddin/.nuget/packages/",
+        "outputPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.CameraControl.Faker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\martin.poepel\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/maddin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/advastoreMS/software/_packaging/eCommerce/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\PiPhotoBooth.Core.csproj": {
-                "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\PiPhotoBooth.Core.csproj"
+              "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/PiPhotoBooth.Core.csproj": {
+                "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/PiPhotoBooth.Core.csproj"
               }
             }
           }
@@ -118,38 +116,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.CameraControl.GPhoto\\PiPhotoBooth.CameraControl.GPhoto.csproj": {
+    "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.CameraControl.GPhoto/PiPhotoBooth.CameraControl.GPhoto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.CameraControl.GPhoto\\PiPhotoBooth.CameraControl.GPhoto.csproj",
+        "projectUniqueName": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.CameraControl.GPhoto/PiPhotoBooth.CameraControl.GPhoto.csproj",
         "projectName": "PiPhotoBooth",
-        "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.CameraControl.GPhoto\\PiPhotoBooth.CameraControl.GPhoto.csproj",
-        "packagesPath": "C:\\Users\\martin.poepel\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.CameraControl.GPhoto\\obj\\",
+        "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.CameraControl.GPhoto/PiPhotoBooth.CameraControl.GPhoto.csproj",
+        "packagesPath": "/Users/maddin/.nuget/packages/",
+        "outputPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.CameraControl.GPhoto/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\martin.poepel\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/maddin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/advastoreMS/software/_packaging/eCommerce/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Dev\\Temp\\PiPhotoBooth\\GPhoto2\\GPhoto2.csproj": {
-                "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\GPhoto2\\GPhoto2.csproj"
+              "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/GPhoto2/GPhoto2.csproj": {
+                "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/GPhoto2/GPhoto2.csproj"
               },
-              "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\PiPhotoBooth.Core.csproj": {
-                "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\PiPhotoBooth.Core.csproj"
+              "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/PiPhotoBooth.Core.csproj": {
+                "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/PiPhotoBooth.Core.csproj"
               }
             }
           }
@@ -179,28 +176,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\PiPhotoBooth.Core.csproj": {
+    "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/PiPhotoBooth.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\PiPhotoBooth.Core.csproj",
+        "projectUniqueName": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/PiPhotoBooth.Core.csproj",
         "projectName": "PiPhotoBooth.Core",
-        "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\PiPhotoBooth.Core.csproj",
-        "packagesPath": "C:\\Users\\martin.poepel\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\obj\\",
+        "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/PiPhotoBooth.Core.csproj",
+        "packagesPath": "/Users/maddin/.nuget/packages/",
+        "outputPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\martin.poepel\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/maddin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/advastoreMS/software/_packaging/eCommerce/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
@@ -243,44 +239,43 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Presentation\\PiPhotoBooth.Presentation.csproj": {
+    "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Presentation\\PiPhotoBooth.Presentation.csproj",
+        "projectUniqueName": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj",
         "projectName": "PiPhotoBooth.Presentation",
-        "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Presentation\\PiPhotoBooth.Presentation.csproj",
-        "packagesPath": "C:\\Users\\martin.poepel\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Presentation\\obj\\",
+        "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj",
+        "packagesPath": "/Users/maddin/.nuget/packages/",
+        "outputPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Presentation/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\martin.poepel\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/maddin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/advastoreMS/software/_packaging/eCommerce/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBoot.CameraControl.Faker\\PiPhotoBoot.CameraControl.Faker.csproj": {
-                "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBoot.CameraControl.Faker\\PiPhotoBoot.CameraControl.Faker.csproj"
+              "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.CameraControl.Faker/PiPhotoBoot.CameraControl.Faker.csproj": {
+                "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBoot.CameraControl.Faker/PiPhotoBoot.CameraControl.Faker.csproj"
               },
-              "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.CameraControl.GPhoto\\PiPhotoBooth.CameraControl.GPhoto.csproj": {
-                "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.CameraControl.GPhoto\\PiPhotoBooth.CameraControl.GPhoto.csproj"
+              "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.CameraControl.GPhoto/PiPhotoBooth.CameraControl.GPhoto.csproj": {
+                "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.CameraControl.GPhoto/PiPhotoBooth.CameraControl.GPhoto.csproj"
               },
-              "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\PiPhotoBooth.Core.csproj": {
-                "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\PiPhotoBooth.Core.csproj"
+              "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/PiPhotoBooth.Core.csproj": {
+                "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/PiPhotoBooth.Core.csproj"
               },
-              "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Repository.LiteDb\\PiPhotoBooth.Repository.LiteDb.csproj": {
-                "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Repository.LiteDb\\PiPhotoBooth.Repository.LiteDb.csproj"
+              "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/PiPhotoBooth.Repository.LiteDb.csproj": {
+                "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/PiPhotoBooth.Repository.LiteDb.csproj"
               }
             }
           }
@@ -364,35 +359,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Repository.LiteDb\\PiPhotoBooth.Repository.LiteDb.csproj": {
+    "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/PiPhotoBooth.Repository.LiteDb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Repository.LiteDb\\PiPhotoBooth.Repository.LiteDb.csproj",
+        "projectUniqueName": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/PiPhotoBooth.Repository.LiteDb.csproj",
         "projectName": "PiPhotoBooth.Repository.LiteDb",
-        "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Repository.LiteDb\\PiPhotoBooth.Repository.LiteDb.csproj",
-        "packagesPath": "C:\\Users\\martin.poepel\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Repository.LiteDb\\obj\\",
+        "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/PiPhotoBooth.Repository.LiteDb.csproj",
+        "packagesPath": "/Users/maddin/.nuget/packages/",
+        "outputPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Repository.LiteDb/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\martin.poepel\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/maddin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/advastoreMS/software/_packaging/eCommerce/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\PiPhotoBooth.Core.csproj": {
-                "projectPath": "C:\\Dev\\Temp\\PiPhotoBooth\\PiPhotoBooth.Core\\PiPhotoBooth.Core.csproj"
+              "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/PiPhotoBooth.Core.csproj": {
+                "projectPath": "/Users/maddin/Documents/Development/Maddin/PiPhotoBooth/PiPhotoBooth/PiPhotoBooth.Core/PiPhotoBooth.Core.csproj"
               }
             }
           }
@@ -432,7 +426,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

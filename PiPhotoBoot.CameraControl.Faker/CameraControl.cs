@@ -5,7 +5,7 @@ using ResultMonad;
 
 public class CameraControl : ICameraControl
 {
-    private const string ImageUrl = "https://picsum.photos/1050/1200";
+    private const string ImageUrl = "https://picsum.photos/1200/1050";
 
     public Task<bool> IsOnlineAsync()
     {
