@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="PiPhotoBoot.GPhoto2.Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ResultMonad" Version="1.0.1" />
+    </ItemGroup>
+</Project>

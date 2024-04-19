@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PiPhotoBooth.GPhoto2\PiPhotoBooth.GPhoto2.csproj" />
+      <ProjectReference Include="..\GPhoto2\GPhoto2.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,7 +1,10 @@
-﻿namespace PiPhotoBooth.Repository;
+﻿namespace PiPhotoBooth;
 
 using Entities;
 using LiteDB.Async;
+using Mappings;
+using MaybeMonad;
+using Photo = Model.Photo;
 
 public sealed class Repository : IDisposable, IRepository
 {
@@ -45,6 +48,35 @@ public sealed class Repository : IDisposable, IRepository
         {
             await col.UpdateAsync(photoIndex);
         }
+    }
+
+    public async Task AddPhoto(Photo photo)
+    {
+        var col = database.GetCollection<Entities.Photo>("photos");
+
+        var photoEntity = photo.ToEntity();
+        await col.InsertAsync(photoEntity);
+    }
+
+    public async Task<IEnumerable<Photo>> GetPhotos()
+    {
+        var col = database.GetCollection<Entities.Photo>("photos");
+        var entities = await col.Query().ToListAsync();
+
+        return entities.Select(photo => photo.ToModel());
+    }
+    
+    public async Task<Maybe<Photo>> GetLastPhoto()
+    {
+        var col = database.GetCollection<Entities.Photo>("photos");
+        var entity = await col.Query().OrderByDescending(photo => photo.Taken).FirstOrDefaultAsync();
+
+        if (entity == null)
+        {
+            return Maybe<Photo>.Nothing;
+        }
+        
+        return entity.ToModel();
     }
 
     public void Dispose()

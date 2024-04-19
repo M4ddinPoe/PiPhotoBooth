@@ -1,13 +1,17 @@
-using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Markup.Xaml;
-using PiPhotoBooth.ViewModels;
-using PiPhotoBooth.Views;
-
 namespace PiPhotoBooth;
 
 using System;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Markup.Xaml;
+
+using PiPhotoBoot;
+using PiPhotoBooth.ViewModels;
+using PiPhotoBooth.Views;
 
 public partial class App : Application
 {
@@ -20,11 +24,20 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        IConfiguration config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .Build();
+        
+        var configuration = config.GetRequiredSection("PhotoBooth").Get<Configuration.Configuration>();
+
         // Register all the services needed for the application to run
         var collection = new ServiceCollection();
         collection.AddCommonServices();
         collection.AddCoreServices();
         collection.AddRepositoryServices();
+        collection.AddFakeCameraService();
+        collection.AddSingleton(configuration);
 
         // Creates a ServiceProvider containing services from the provided IServiceCollection
         this.serviceProvider = collection.BuildServiceProvider();

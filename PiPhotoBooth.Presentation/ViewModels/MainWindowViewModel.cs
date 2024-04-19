@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using System.Timers;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
-using PiPhotoBoot.UseCases;
 using ReactiveUI;
 using ResultMonad;
+using UseCases;
 
 public class MainWindowViewModel : ViewModelBase
 {
@@ -240,7 +240,15 @@ public class MainWindowViewModel : ViewModelBase
 
     private async Task ShowPhoto()
     {
-        await using var imageStream = this.loadLastPhoto.Execute();
+        var maybeStream = await this.loadLastPhoto.ExecuteAsync();
+
+        if (maybeStream.HasNoValue)
+        {
+            // todo: show error
+            return;
+        }
+        
+        await using var imageStream = maybeStream.Value;
         this.LastImage = await Task.Run(() => Bitmap.DecodeToWidth(imageStream, 1024));
         
         this.IsLoadPhotoProgressBarVisible = false;

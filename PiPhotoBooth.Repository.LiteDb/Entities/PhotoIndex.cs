@@ -1,4 +1,4 @@
-﻿namespace PiPhotoBooth.Repository.Entities;
+﻿namespace PiPhotoBooth.Entities;
 
 internal sealed class PhotoIndex
 {

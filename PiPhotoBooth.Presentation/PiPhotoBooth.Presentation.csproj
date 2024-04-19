@@ -24,12 +24,24 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10"/>
         <PackageReference Include="Material.Avalonia" Version="3.5.0" />
         <PackageReference Include="Material.Icons.Avalonia" Version="2.1.9" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
         <PackageReference Include="ResultMonad" Version="1.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PiPhotoBoot.Core\PiPhotoBoot.Core.csproj" />
+      <ProjectReference Include="..\PiPhotoBoot.CameraControl.Faker\PiPhotoBoot.CameraControl.Faker.csproj" />
+      <ProjectReference Include="..\PiPhotoBooth.CameraControl.GPhoto\PiPhotoBooth.CameraControl.GPhoto.csproj" />
+      <ProjectReference Include="..\PiPhotoBooth.Core\PiPhotoBooth.Core.csproj" />
       <ProjectReference Include="..\PiPhotoBooth.Repository.LiteDb\PiPhotoBooth.Repository.LiteDb.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="appsettings.json" />
+      <Content Include="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 </Project>

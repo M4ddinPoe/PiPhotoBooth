@@ -1,7 +1,7 @@
 namespace PiPhotoBoot.GPhoto2.Tests.ResponseParser;
 
 using FluentAssertions;
-using PiPhotoBoot.ResponseParser;
+using global::GPhoto2.ResponseParser;
 
 public class AutoDetectParser_Tests
 {
