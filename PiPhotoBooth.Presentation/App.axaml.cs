@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-
+using CameraControl.GPhoto;
 using PiPhotoBoot;
 using PiPhotoBooth.ViewModels;
 using PiPhotoBooth.Views;
@@ -36,7 +36,8 @@ public partial class App : Application
         collection.AddCommonServices();
         collection.AddCoreServices();
         collection.AddRepositoryServices();
-        collection.AddFakeCameraService();
+        //collection.AddFakeCameraService();
+        collection.AddGPhoto2CameraService();
         collection.AddSingleton(configuration);
 
         // Creates a ServiceProvider containing services from the provided IServiceCollection
