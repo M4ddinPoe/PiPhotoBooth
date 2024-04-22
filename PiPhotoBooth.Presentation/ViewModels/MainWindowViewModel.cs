@@ -1,12 +1,16 @@
 ﻿namespace PiPhotoBooth.ViewModels;
 
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows.Input;
+using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using ReactiveUI;
 using ResultMonad;
 using UseCases;
+using Views;
 
 public class MainWindowViewModel : ViewModelBase
 {
@@ -14,6 +18,8 @@ public class MainWindowViewModel : ViewModelBase
     private readonly IMakePhoto makePhoto;
     private readonly ILoadLastPhoto loadLastPhoto;
 
+    private WindowState selectedWindowState = WindowState.Maximized;
+    
     private bool isErrorMessageVisible;
     private string errorMessage;
     
@@ -65,8 +71,26 @@ public class MainWindowViewModel : ViewModelBase
         checkOnlineTimer.Elapsed += CheckOnlineTimerOnElapsed;
         checkOnlineTimer.Start();
 
-        this.CheckOnlineState();
+        ShowDialog = new Interaction<SettingsWindowViewModel, object?>();
 
+        OpenSettingsCommand = ReactiveCommand.CreateFromTask(async () =>
+        {
+            var store = new SettingsWindowViewModel();
+
+            await ShowDialog.Handle(store);
+        });
+        
+        this.CheckOnlineState();
+    }
+
+    public ICommand OpenSettingsCommand { get; }
+    
+    public Interaction<SettingsWindowViewModel, object?> ShowDialog { get; }
+    
+    public WindowState SelectedWindowState
+    {
+        get => this.selectedWindowState;
+        set => this.RaiseAndSetIfChanged(ref this.selectedWindowState, value);
     }
     
     public bool IsErrorMessageVisible

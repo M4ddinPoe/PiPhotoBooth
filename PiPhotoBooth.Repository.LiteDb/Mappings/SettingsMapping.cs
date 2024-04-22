@@ -1,0 +1,22 @@
+namespace PiPhotoBooth.Mappings;
+
+using Entities;
+using Model;
+
+internal static class SettingsMapping
+{
+    public static Settings ToModel(this SettingsEntity entity)
+    {
+        return new Settings(entity.DataDirectory, entity.IsFakeCameraControlEnabled);
+    }
+
+    public static SettingsEntity ToEntity(this Settings model)
+    {
+        return new SettingsEntity
+        {
+            Id = 1,
+            DataDirectory = model.DataDirectory,
+            IsFakeCameraControlEnabled = model.IsFakeCameraControlEnabled,
+        };
+    }
+}

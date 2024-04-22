@@ -4,6 +4,8 @@ using Entities;
 using LiteDB.Async;
 using Mappings;
 using MaybeMonad;
+using Model;
+using Services;
 using Photo = Model.Photo;
 
 public sealed class Repository : IRepository
@@ -12,7 +14,40 @@ public sealed class Repository : IRepository
     
     public Repository()
     {
-        this.connectionString = Path.Combine(Environment.CurrentDirectory, "ppb.db");
+        this.connectionString = Path.Combine(OSEnvironment.DataDirectory, "ppb.db");
+    }
+
+    public async Task<bool> IsInitialized()
+    {
+        using var database = new LiteDatabaseAsync(this.connectionString);
+        var col = database.GetCollection<SettingsEntity>("settings");
+
+        var count = await col.CountAsync();
+        return count > 0;
+    }
+
+    public async Task<Model.Settings> GetSettings()
+    {
+        using var database = new LiteDatabaseAsync(this.connectionString);
+        var col = database.GetCollection<SettingsEntity>("settings");
+        
+        var settings = await col.Query().FirstOrDefaultAsync();
+
+        if (settings == null)
+        {
+            settings = new SettingsEntity();
+            await col.InsertAsync(settings);
+        }
+
+        return settings.ToModel();
+    }
+
+    public async Task UpdateSettings(Model.Settings settings)
+    {
+        using var database = new LiteDatabaseAsync(this.connectionString);
+        var col = database.GetCollection<SettingsEntity>("settings");
+
+        await col.UpdateAsync(settings.ToEntity());
     }
     
     public async Task<int> GetNextIndexAsync()

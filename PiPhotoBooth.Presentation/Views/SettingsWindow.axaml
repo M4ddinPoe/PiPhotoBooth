@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:PiPhotoBooth.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="PiPhotoBooth.Views.SettingsWindow"
+        Title="Settings">
+    <StackPanel>
+        <TextBlock 
+            FontSize="36" 
+            HorizontalAlignment="Center">Settings</TextBlock>
+        <TextBlock
+            Margin="20 10"
+            FontSize="18">
+            Photo Directory
+        </TextBlock>
+        <WrapPanel>
+            <TextBox 
+                x:Name="PhotoDirectoryTextBox"
+                Width="400"
+                Margin="20 10"
+                IsReadOnly="True" />
+            <Button 
+                Margin="20 10"
+                Width="100"
+                Content="Select"
+                Click="SelectPhotoDirectoryButton_OnClick"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock
+                Margin="20 10"
+                Width="400"
+                FontSize="18">
+                Use Fake Camera Control
+            </TextBlock>
+            <ToggleSwitch 
+                Margin="20 10"/>
+        </WrapPanel>
+    </StackPanel>
+</Window>

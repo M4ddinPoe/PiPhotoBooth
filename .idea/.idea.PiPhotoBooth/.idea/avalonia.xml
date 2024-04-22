@@ -7,6 +7,8 @@
         <entry key="PiPhotoBooth.Presentation/Views/GalleryView.axaml" value="PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj" />
         <entry key="PiPhotoBooth.Presentation/Views/ImageView.axaml" value="PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj" />
         <entry key="PiPhotoBooth.Presentation/Views/MainWindow.axaml" value="PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj" />
+        <entry key="PiPhotoBooth.Presentation/Views/SettingsView.axaml" value="PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj" />
+        <entry key="PiPhotoBooth.Presentation/Views/SettingsWindow.axaml" value="PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj" />
       </map>
     </option>
   </component>
