@@ -8,5 +8,6 @@ public static class ServiceCollectionExtensions {
         // collection.AddSingleton<IRepository, Repository>();
         // collection.AddTransient<BusinessService>();
         collection.AddTransient<MainWindowViewModel>();
+        collection.AddTransient<SettingsWindowViewModel>();
     }
 }

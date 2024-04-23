@@ -3,8 +3,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:PiPhotoBooth.Views"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:viewModels="clr-namespace:PiPhotoBooth.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="350"
         x:Class="PiPhotoBooth.Views.SettingsWindow"
+        x:DataType="viewModels:SettingsWindowViewModel"
+        Width="650"
+        Height="350"
         Title="Settings">
     <StackPanel>
         <TextBlock 
@@ -18,7 +22,7 @@
         <WrapPanel>
             <TextBox 
                 x:Name="PhotoDirectoryTextBox"
-                Width="400"
+                Width="440"
                 Margin="20 10"
                 IsReadOnly="True" />
             <Button 
@@ -30,12 +34,19 @@
         <WrapPanel>
             <TextBlock
                 Margin="20 10"
-                Width="400"
+                Width="440"
                 FontSize="18">
                 Use Fake Camera Control
             </TextBlock>
             <ToggleSwitch 
                 Margin="20 10"/>
         </WrapPanel>
+        <Button
+            Width="100"
+            Height="60"
+            Margin="0 50 50 0"
+            HorizontalAlignment="Right"
+            Content="Save"
+            Command="{Binding SaveAsync}"/>
     </StackPanel>
 </Window>

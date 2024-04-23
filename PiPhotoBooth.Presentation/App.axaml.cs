@@ -9,7 +9,6 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using CameraControl.GPhoto;
-using PiPhotoBoot;
 using PiPhotoBooth.ViewModels;
 using PiPhotoBooth.Views;
 

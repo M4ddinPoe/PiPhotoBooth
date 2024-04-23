@@ -1,5 +1,6 @@
 ﻿namespace PiPhotoBooth.ViewModels;
 
+using System;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Timers;
@@ -7,8 +8,10 @@ using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using ResultMonad;
+using Settings.UseCases;
 using UseCases;
 using Views;
 
@@ -17,6 +20,8 @@ public class MainWindowViewModel : ViewModelBase
     private readonly ICheckCameraConnected checkCameraConnected;
     private readonly IMakePhoto makePhoto;
     private readonly ILoadLastPhoto loadLastPhoto;
+
+    private readonly ICheckIsInitialized checkIsInitialized;
 
     private WindowState selectedWindowState = WindowState.Maximized;
     
@@ -46,11 +51,14 @@ public class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(
         ILoadLastPhoto loadLastPhoto, 
         IMakePhoto makePhoto, 
-        ICheckCameraConnected checkCameraConnected)
+        ICheckCameraConnected checkCameraConnected, 
+        ICheckIsInitialized checkIsInitialized,
+        IServiceProvider services)
     {
         this.loadLastPhoto = loadLastPhoto;
         this.makePhoto = makePhoto;
         this.checkCameraConnected = checkCameraConnected;
+        this.checkIsInitialized = checkIsInitialized;
 
         this.IsErrorMessageVisible = false;
         this.ErrorMessage = string.Empty;
@@ -75,9 +83,15 @@ public class MainWindowViewModel : ViewModelBase
 
         OpenSettingsCommand = ReactiveCommand.CreateFromTask(async () =>
         {
-            var store = new SettingsWindowViewModel();
-
-            await ShowDialog.Handle(store);
+            try
+            {
+                var store = services.GetRequiredService<SettingsWindowViewModel>();
+                await ShowDialog.Handle(store);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         });
         
         this.CheckOnlineState();
@@ -182,17 +196,35 @@ public class MainWindowViewModel : ViewModelBase
         get => isLastImageVisible;
         private set => this.RaiseAndSetIfChanged(ref this.isLastImageVisible, value);
     }
-
-    public async Task CheckOnlineState()
-    {
-        IsCameraOnlineBrush = await this.checkCameraConnected.ExecuteAsync()
-            ? Brushes.Green
-            : Brushes.Red;
-    }
     
     public async void PhotoButtonActivated()
     {
         await this.TakeNewPhoto();
+    }
+
+    public async void InitializeIfNotAlreadyDone()
+    {
+        try
+        {
+            var isInitialized = await this.checkIsInitialized.ExecuteAsync();
+
+            if (!isInitialized)
+            {
+                this.OpenSettingsCommand.Execute(null);
+            }
+        }
+        catch (Exception exception)
+        {
+            // todo: Error handling
+            Console.WriteLine(exception);
+        }
+    }
+    
+    private async Task CheckOnlineState()
+    {
+        IsCameraOnlineBrush = await this.checkCameraConnected.ExecuteAsync()
+            ? Brushes.Green
+            : Brushes.Red;
     }
     
     private async void CheckOnlineTimerOnElapsed(object? sender, ElapsedEventArgs e)

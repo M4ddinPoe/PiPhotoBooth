@@ -1,11 +1,23 @@
 namespace PiPhotoBooth.Settings.UseCases;
 
-public class LoadSettings
+using Model;
+
+public interface ILoadSettings
+{
+    Task<Settings> ExecuteAsync();
+}
+
+internal sealed class LoadSettings : ILoadSettings
 {
     private readonly IRepository repository;
 
     public LoadSettings(IRepository repository)
     {
         this.repository = repository;
+    }
+
+    public Task<Settings> ExecuteAsync()
+    {
+        return this.repository.GetSettings();
     }
 }

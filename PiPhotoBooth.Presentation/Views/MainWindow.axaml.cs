@@ -13,8 +13,14 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
     {
         InitializeComponent();
         
-        this.WhenActivated(action => 
-            action(ViewModel!.ShowDialog.RegisterHandler(DoShowDialogAsync)));
+        this.WhenActivated(action =>
+        {
+            action(ViewModel!.ShowDialog.RegisterHandler(DoShowDialogAsync));
+            var mainWindowViewModel = this.DataContext as MainWindowViewModel;
+
+            mainWindowViewModel?.InitializeIfNotAlreadyDone();
+        });
+        
     }
     
     private async Task DoShowDialogAsync(InteractionContext<SettingsWindowViewModel, object?> interaction)
