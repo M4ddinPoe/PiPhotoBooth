@@ -24,6 +24,7 @@
                 x:Name="PhotoDirectoryTextBox"
                 Width="440"
                 Margin="20 10"
+                Text="{Binding DataDirectory}"
                 IsReadOnly="True" />
             <Button 
                 Margin="20 10"
@@ -39,6 +40,7 @@
                 Use Fake Camera Control
             </TextBlock>
             <ToggleSwitch 
+                IsChecked="{Binding IsFakeCameraControlEnabled}"
                 Margin="20 10"/>
         </WrapPanel>
         <Button
