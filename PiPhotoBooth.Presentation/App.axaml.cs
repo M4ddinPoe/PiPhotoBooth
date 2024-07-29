@@ -11,6 +11,7 @@ using Avalonia.Markup.Xaml;
 using CameraControl.GPhoto;
 using PiPhotoBooth.ViewModels;
 using PiPhotoBooth.Views;
+using Services;
 
 public partial class App : Application
 {
@@ -59,7 +60,10 @@ public partial class App : Application
                 DataContext = vm
             };
         }
-        
+
+        var settingsProvider = this.serviceProvider.GetService<SettingsProvider>();
+        settingsProvider.Init();
+
         base.OnFrameworkInitializationCompleted();
     }
     

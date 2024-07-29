@@ -3,22 +3,21 @@ namespace PiPhotoBooth.ViewModels;
 using System;
 using Model;
 using ReactiveUI;
+using Services;
 using Settings.UseCases;
 
 public class SettingsWindowViewModel : ViewModelBase
 {
-    private readonly ILoadSettings loadSettings;
-    private readonly IUpdateSettings updateSettings;
+    private readonly SettingsProvider settingsProvider;
 
     private string _dataDirectory;
     private bool _isFakeCameraControlEnabled;
     
-    public SettingsWindowViewModel(ILoadSettings loadSettings, IUpdateSettings updateSettings)
+    public SettingsWindowViewModel(SettingsProvider settingsProvider)
     {
-        this.loadSettings = loadSettings;
-        this.updateSettings = updateSettings;
-        
-        this.LoadSettingsAsync();
+        this.settingsProvider = settingsProvider;
+
+        this.LoadSettings();
     }
 
     public string DataDirectory
@@ -38,7 +37,7 @@ public class SettingsWindowViewModel : ViewModelBase
         try
         {
             var settings = new Settings(this.DataDirectory, this.IsFakeCameraControlEnabled);
-            await this.updateSettings.ExecuteAsync(settings);
+            await this.settingsProvider.UpdateSettings(settings);
         }
         catch (Exception exception)
         {
@@ -46,14 +45,12 @@ public class SettingsWindowViewModel : ViewModelBase
         }
     }
     
-    private async void LoadSettingsAsync()
+    private void LoadSettings()
     {
         try
         {
-            var settings = await this.loadSettings.ExecuteAsync();
-
-            this.DataDirectory = settings.DataDirectory;
-            this.IsFakeCameraControlEnabled = settings.IsFakeCameraControlEnabled;
+            this.DataDirectory = this.settingsProvider.Settings.DataDirectory;
+            this.IsFakeCameraControlEnabled = this.settingsProvider.Settings.IsFakeCameraControlEnabled;
         }
         catch (Exception exception)
         {
