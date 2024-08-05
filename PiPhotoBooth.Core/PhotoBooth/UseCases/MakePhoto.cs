@@ -1,6 +1,5 @@
 namespace PiPhotoBooth.UseCases;
 
-using Configuration;
 using Model;
 using ResultMonad;
 using Services;
@@ -13,15 +12,13 @@ public interface IMakePhoto
 internal sealed class MakePhoto : IMakePhoto
 {
     private readonly IRepository repository;
-    private readonly Configuration configuration;
     private readonly ICameraControl cameraControl;
     private readonly SettingsProvider settingsProvider;
 
-    public MakePhoto(IRepository repository, Configuration configuration, ICameraControl cameraControl, SettingsProvider settingsProvider)
+    public MakePhoto(IRepository repository, SettingsProvider settingsProvider)
     {
         this.repository = repository;
-        this.configuration = configuration;
-        this.cameraControl = cameraControl;
+        this.cameraControl = settingsProvider.GetConfiguredCameraControl();
         this.settingsProvider = settingsProvider;
     }
 
