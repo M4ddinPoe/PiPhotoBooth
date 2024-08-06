@@ -14,14 +14,21 @@ public sealed class Repository : IRepository
     
     public Repository()
     {
-        this.connectionString = Path.Combine(OSEnvironment.DataDirectory, "ppb.db");
+        var directory = Path.Combine(@"C:\temp", "PiPhotoBooth");
+
+        if (!Directory.Exists(directory))
+        {
+            Directory.CreateDirectory(directory);
+        }
+        
+        this.connectionString = Path.Combine(directory, "ppb.db");
     }
 
     public async Task<bool> IsInitialized()
     {
         using var database = new LiteDatabaseAsync(this.connectionString);
         var col = database.GetCollection<SettingsEntity>("settings");
-
+        
         var count = await col.CountAsync();
         return count > 0;
     }
@@ -41,13 +48,22 @@ public sealed class Repository : IRepository
 
         return settings.ToModel();
     }
-
+    
     public async Task UpdateSettings(Model.Settings settings)
     {
         using var database = new LiteDatabaseAsync(this.connectionString);
         var col = database.GetCollection<SettingsEntity>("settings");
+        
+        var count = await col.CountAsync();
 
-        await col.UpdateAsync(settings.ToEntity());
+        if (count == 0)
+        {
+            await col.InsertAsync(settings.ToEntity());
+        }
+        else
+        {
+            await col.UpdateAsync(settings.ToEntity());
+        }
     }
     
     public async Task<int> GetNextIndexAsync()
