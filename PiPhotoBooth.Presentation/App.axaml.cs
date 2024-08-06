@@ -12,6 +12,7 @@ using CameraControl.GPhoto;
 using PiPhotoBooth.ViewModels;
 using PiPhotoBooth.Views;
 using Services;
+using Settings.UseCases;
 
 public partial class App : Application
 {
@@ -33,6 +34,7 @@ public partial class App : Application
 
         // Register all the services needed for the application to run
         var collection = new ServiceCollection();
+        collection.AddMediator();
         collection.AddCommonServices();
         collection.AddCoreServices();
         collection.AddRepositoryServices();
@@ -43,6 +45,9 @@ public partial class App : Application
         // Creates a ServiceProvider containing services from the provided IServiceCollection
         this.serviceProvider = collection.BuildServiceProvider();
         var vm = serviceProvider.GetRequiredService<MainWindowViewModel>();
+        
+        var settingsProvider = this.serviceProvider.GetService<SettingsProvider>();
+        settingsProvider.Init();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
@@ -60,9 +65,6 @@ public partial class App : Application
                 DataContext = vm
             };
         }
-
-        var settingsProvider = this.serviceProvider.GetService<SettingsProvider>();
-        settingsProvider.Init();
 
         base.OnFrameworkInitializationCompleted();
     }

@@ -1,6 +1,8 @@
 namespace PiPhotoBooth.Settings.UseCases;
 
+using Mediator;
 using Model;
+using Services.Messages;
 
 public interface IUpdateSettings
 {
@@ -9,15 +11,18 @@ public interface IUpdateSettings
 
 internal sealed class UpdateSettings : IUpdateSettings
 {
+    private readonly IMediator mediator;
     private readonly IRepository repository;
 
-    public UpdateSettings(IRepository repository)
+    public UpdateSettings(IMediator mediator, IRepository repository)
     {
+        this.mediator = mediator;
         this.repository = repository;
     }
 
-    public Task ExecuteAsync(Settings settings)
+    public async Task ExecuteAsync(Settings settings)
     {
-        return this.repository.UpdateSettings(settings);
+        await this.repository.UpdateSettings(settings);
+        await this.mediator.Publish(new SettingsUpdatedNotification());
     }
 }
