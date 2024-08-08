@@ -12,13 +12,11 @@ public interface IMakePhoto
 internal sealed class MakePhoto : IMakePhoto
 {
     private readonly IRepository repository;
-    private readonly ICameraControl cameraControl;
     private readonly SettingsProvider settingsProvider;
 
     public MakePhoto(IRepository repository, SettingsProvider settingsProvider)
     {
         this.repository = repository;
-        this.cameraControl = settingsProvider.GetConfiguredCameraControl();
         this.settingsProvider = settingsProvider;
     }
 
@@ -28,8 +26,9 @@ internal sealed class MakePhoto : IMakePhoto
         var index = await this.repository.GetNextIndexAsync();
         var filename = $"{DateTime.Today :yyyyMMdd}-{index}.jpg";
         var path = Path.Combine(this.settingsProvider.Settings.DataDirectory, filename);
+        var cameraControl = settingsProvider.GetConfiguredCameraControl();
 
-        var result = await this.cameraControl.TakePhotoAsync(path); 
+        var result = await cameraControl.TakePhotoAsync(path); 
         
         if (result.IsFailure)
         {

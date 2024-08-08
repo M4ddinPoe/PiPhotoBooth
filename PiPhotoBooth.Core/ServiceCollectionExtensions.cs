@@ -1,7 +1,9 @@
 namespace PiPhotoBooth;
 
+using Mediator;
 using Microsoft.Extensions.DependencyInjection;
 using Services;
+using Services.Messages;
 using Settings.UseCases;
 using UseCases;
 

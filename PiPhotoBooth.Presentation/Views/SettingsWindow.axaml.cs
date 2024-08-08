@@ -25,7 +25,7 @@ public partial class SettingsWindow : Window
 
         if (directory.Count == 1)
         {
-            this.PhotoDirectoryTextBox.Text = directory[0].Path.ToString();
+            this.PhotoDirectoryTextBox.Text = directory[0].Path.LocalPath;
         }
     }
 }
