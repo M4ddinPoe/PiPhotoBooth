@@ -9,5 +9,6 @@ public static class ServiceCollectionExtensions {
         // collection.AddTransient<BusinessService>();
         collection.AddTransient<MainWindowViewModel>();
         collection.AddTransient<SettingsWindowViewModel>();
+        collection.AddTransient<GalleryViewModel>();
     }
 }

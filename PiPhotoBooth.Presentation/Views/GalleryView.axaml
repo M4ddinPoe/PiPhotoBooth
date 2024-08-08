@@ -2,7 +2,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:PiPhotoBooth.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:GalleryViewModel"
              x:Class="PiPhotoBooth.Views.GalleryView">
-    Welcome to Avalonia!
+    <ListBox ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedPhoto}"
+             Background="Transparent" Margin="0 20">
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel />
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+    </ListBox>
 </UserControl>
