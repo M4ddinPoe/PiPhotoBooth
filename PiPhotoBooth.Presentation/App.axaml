@@ -11,6 +11,10 @@
         <local:ViewLocator/>
     </Application.DataTemplates>
   
+     <Application.Resources>
+         <local:ViewLocator x:Key="ViewModelLocator" />
+     </Application.Resources>
+             
     <Application.Styles>
         <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Blue" SecondaryColor="Teal" />
         <materialIcons:MaterialIconStyles />

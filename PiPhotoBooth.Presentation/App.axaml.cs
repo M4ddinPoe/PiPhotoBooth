@@ -13,7 +13,6 @@ using PiPhotoBoot;
 using PiPhotoBooth.ViewModels;
 using PiPhotoBooth.Views;
 using Services;
-using Settings.UseCases;
 
 public partial class App : Application
 {
