@@ -1,13 +1,19 @@
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
-
 namespace PiPhotoBooth.Views;
 
-public partial class GalleryView : UserControl
+using Avalonia.ReactiveUI;
+using ReactiveUI;
+using ViewModels;
+
+public partial class GalleryView : ReactiveUserControl<GalleryViewModel>
 {
-    public GalleryView()
+    public GalleryView(GalleryViewModel viewModel)
     {
         InitializeComponent();
+        this.DataContext = viewModel;
+
+        this.WhenActivated(action =>
+        {
+            (this.DataContext as GalleryViewModel)?.OnActivated();
+        });
     }
 }

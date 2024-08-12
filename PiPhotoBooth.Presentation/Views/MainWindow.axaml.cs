@@ -9,9 +9,11 @@ using ViewModels;
 
 public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 {
-    public MainWindow()
+    public MainWindow(GalleryView galleryView)
     {
         InitializeComponent();
+
+        this.GalleryViewPlaceholder.Content = galleryView;
         
         this.WhenActivated(action =>
         {

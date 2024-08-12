@@ -1,9 +1,7 @@
 namespace PiPhotoBooth;
 
-using Mediator;
 using Microsoft.Extensions.DependencyInjection;
 using Services;
-using Services.Messages;
 using Settings.UseCases;
 using UseCases;
 
@@ -13,6 +11,7 @@ public static class ServiceCollectionExtensions
     {
         collection.AddTransient<ICheckCameraConnected, CheckCameraConnected>();
         collection.AddTransient<ILoadLastPhoto, LoadLastPhoto>();
+        collection.AddTransient<ILoadSavedPhotos, LoadSavedPhotos>();
         collection.AddTransient<IMakePhoto, MakePhoto>();
         
         collection.AddTransient<ICheckIsInitialized, CheckIsInitialized>();

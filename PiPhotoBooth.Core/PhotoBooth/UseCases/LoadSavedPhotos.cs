@@ -2,7 +2,12 @@ namespace PiPhotoBooth.UseCases;
 
 using Model;
 
-internal sealed class LoadSavedPhotos
+public interface ILoadSavedPhotos
+{
+    Task<IReadOnlyList<Photo>> ExecuteAsync();
+}
+
+internal sealed class LoadSavedPhotos : ILoadSavedPhotos
 {
     private readonly IRepository repository;
 

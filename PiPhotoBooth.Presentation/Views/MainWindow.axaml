@@ -144,7 +144,8 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Gallery">
-                    <views:GalleryView />
+                    <!-- <views:GalleryView /> -->
+                    <ContentControl x:Name="GalleryViewPlaceholder"></ContentControl>
                 </TabItem>
             </TabControl.Items>
         </TabControl>
