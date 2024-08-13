@@ -10,9 +10,6 @@
         <Border CornerRadius="10" ClipToBounds="True">
             <Panel Background="#7FFFFFFF">
                 <Image Width="200" Stretch="Uniform" Source="{Binding Image}" />
-                <!-- <Panel Height="200" IsVisible="{Binding Image, Converter={x:Static ObjectConverters.IsNull}}"> -->
-                <!--     <PathIcon Height="75" Width="75" Data="{StaticResource music_regular}" /> -->
-                <!-- </Panel> -->
             </Panel>
         </Border>
         <TextBlock Text="{Binding Taken}" HorizontalAlignment="Center" />

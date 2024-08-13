@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
         xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
-        xmlns:views="clr-namespace:PiPhotoBooth.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PiPhotoBooth.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -36,13 +35,7 @@
         <TabControl>
             <TabControl.Items>
                 <TabItem Header="Photo">
-                    <Grid x:Name="PhotoTab"
-                          Background="{Binding PhotoTabBackground}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="50" />
-                        </Grid.RowDefinitions>
-                        
+                    <Grid x:Name="PhotoTab">
                         <Canvas 
                             Width="120" 
                             Height="120"
@@ -72,79 +65,10 @@
                             </Viewbox>
                         </controls:FloatingButton>
                         
-                        <Image 
-                            Source="{Binding LastImage}"
-                            IsVisible="{Binding IsLastImageVisible}"
-                            Grid.RowSpan="2"></Image>
-                        
-                        <TextBlock 
-                            x:Name="CountdownLabel"
-                            Grid.Row="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            IsVisible="{Binding IsCountdownLabelVisible}"
-                            FontSize="64"
-                            Foreground="RoyalBlue"
-                            Text="{Binding CountdownLabelText}" />
-                        <ProgressBar 
-                            x:Name="ProgressBar"
-                            Grid.Row="0"
-                            Height="200" 
-                            Width="200"
-                            Classes="circular" 
-                            ShowProgressText="False"
-                            IsVisible="{Binding IsCountdownProgressBarVisible}"
-                            Value="{Binding ProgressBarValue}"/>
-                        
-                        <ProgressBar 
-                            Grid.Row="0" 
-                            Height="200" 
-                            Width="200"
-                            Classes="circular" 
-                            IsVisible="{Binding IsLoadPhotoProgressBarVisible}"
-                            IsIndeterminate="True" />
-                        
-                        <controls:FloatingButton 
-                            x:Name="PhotoButton"
-                            Grid.Row="0" 
-                            Height="100"
-                            Width="100"
-                            Classes="Light"
-                            IsVisible="{Binding IsPhotoButtonVisible}"
-                            Command="{Binding PhotoButtonActivated}">
-                            <Viewbox Stretch="Fill"
-                                     HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Stretch">
-                                <avalonia:MaterialIcon Kind="Photography" Width="32" Height="32" />
-                            </Viewbox>
-                        </controls:FloatingButton>
-                        
-                        <WrapPanel 
-                            Grid.Row="1" 
-                            HorizontalAlignment="Center">
-                            <RadioButton 
-                                GroupName="WaitSeconds" 
-                                Margin="10 0" 
-                                Classes="accent" 
-                                IsChecked="{Binding IsThreeSecondsTimerSelected}" 
-                                Tag="3">3 Sekunden</RadioButton>
-                            <RadioButton 
-                                GroupName="WaitSeconds" 
-                                Margin="10 0" 
-                                Classes="accent" 
-                                IsChecked="{Binding IsFiveSecondsTimerSelected}"
-                                Tag="5">5 Sekunden</RadioButton>
-                            <RadioButton 
-                                GroupName="WaitSeconds" 
-                                Margin="10 0" 
-                                Classes="accent" 
-                                Tag="10"
-                                IsChecked="{Binding IsTenSecondsTimerSelected}">10 Sekunden</RadioButton>
-                        </WrapPanel>
+                        <ContentControl x:Name="PhotoViewPlaceholder"></ContentControl>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Gallery">
-                    <!-- <views:GalleryView /> -->
                     <ContentControl x:Name="GalleryViewPlaceholder"></ContentControl>
                 </TabItem>
             </TabControl.Items>
