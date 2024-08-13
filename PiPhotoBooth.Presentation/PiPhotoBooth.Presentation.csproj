@@ -23,7 +23,6 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10"/>
         <PackageReference Include="Material.Avalonia" Version="3.5.0" />
         <PackageReference Include="Material.Icons.Avalonia" Version="2.1.9" />
-        <PackageReference Include="Mediator.Abstractions" Version="2.1.7" />
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />

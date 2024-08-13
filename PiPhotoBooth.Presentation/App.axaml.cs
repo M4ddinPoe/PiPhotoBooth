@@ -34,7 +34,6 @@ public partial class App : Application
 
         // Register all the services needed for the application to run
         var collection = new ServiceCollection();
-        collection.AddMediator();
         collection.AddCommonServices();
         collection.AddCoreServices();
         collection.AddRepositoryServices();

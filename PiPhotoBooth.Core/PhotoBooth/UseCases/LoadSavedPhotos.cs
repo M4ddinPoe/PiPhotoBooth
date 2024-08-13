@@ -19,6 +19,6 @@ internal sealed class LoadSavedPhotos : ILoadSavedPhotos
     public async Task<IReadOnlyList<Photo>> ExecuteAsync()
     {
         var photos = await this.repository.GetPhotos();
-        return photos.ToList();
+        return photos.OrderByDescending(photo => photo.Taken).ToList();
     }
 }
