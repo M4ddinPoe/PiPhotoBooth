@@ -2,11 +2,33 @@ using Avalonia.Controls;
 
 namespace PiPhotoBooth.Views;
 
-public partial class MainWindow : Window
+using System.Threading.Tasks;
+using Avalonia.ReactiveUI;
+using ReactiveUI;
+using ViewModels;
+
+public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 {
-    
     public MainWindow()
     {
         InitializeComponent();
+        
+        this.WhenActivated(action =>
+        {
+            action(ViewModel!.ShowDialog.RegisterHandler(DoShowDialogAsync));
+            var mainWindowViewModel = this.DataContext as MainWindowViewModel;
+
+            mainWindowViewModel?.InitializeIfNotAlreadyDone();
+        });
+        
+    }
+    
+    private async Task DoShowDialogAsync(InteractionContext<SettingsWindowViewModel, object?> interaction)
+    {
+        var dialog = new SettingsWindow();
+        dialog.DataContext = interaction.Input;
+
+        var result = await dialog.ShowDialog<object?>(this);
+        interaction.SetOutput(result);
     }
 }

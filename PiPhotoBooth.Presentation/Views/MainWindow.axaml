@@ -8,6 +8,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PiPhotoBooth.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        WindowState="{Binding SelectedWindowState}"
         Icon="/Assets/avalonia-logo.ico"
         Title="PiPhotoBooth.Presentation">
 
@@ -52,6 +53,23 @@
                                 Height="12"
                                 Fill="{Binding IsCameraOnlineBrush}"></Ellipse> 
                         </Canvas>
+                        
+                        <controls:FloatingButton 
+                            x:Name="SettingsButton"
+                            Grid.Row="0" 
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Margin="0 5 5 0"
+                            Height="50"
+                            Width="50"
+                            Classes="Accent"
+                            Command="{Binding OpenSettingsCommand}">
+                            <Viewbox Stretch="Fill"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch">
+                                <avalonia:MaterialIcon Kind="Settings" Width="24" Height="24" />
+                            </Viewbox>
+                        </controls:FloatingButton>
                         
                         <Image 
                             Source="{Binding LastImage}"
