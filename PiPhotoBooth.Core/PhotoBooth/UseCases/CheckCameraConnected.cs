@@ -1,8 +1,6 @@
 namespace PiPhotoBooth.UseCases;
 
-using Mediator;
 using Services;
-using Services.Messages;
 
 public interface ICheckCameraConnected
 {

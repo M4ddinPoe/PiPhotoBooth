@@ -24,7 +24,7 @@ public class ImageViewModel : ViewModelBase
         private set => this.RaiseAndSetIfChanged(ref this.image, value);
     }
     
-    public async Task LoadCover()
+    public async Task LoadPhoto()
     {
         await using (var imageStream =await photo.LoadAsync())
         {

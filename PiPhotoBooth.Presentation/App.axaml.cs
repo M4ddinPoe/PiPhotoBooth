@@ -13,7 +13,6 @@ using PiPhotoBoot;
 using PiPhotoBooth.ViewModels;
 using PiPhotoBooth.Views;
 using Services;
-using Settings.UseCases;
 
 public partial class App : Application
 {
@@ -45,7 +44,10 @@ public partial class App : Application
 
         // Creates a ServiceProvider containing services from the provided IServiceCollection
         this.serviceProvider = collection.BuildServiceProvider();
+        var v = serviceProvider.GetRequiredService<MainWindow>();
         var vm = serviceProvider.GetRequiredService<MainWindowViewModel>();
+        
+        v.DataContext = vm;
         
         var settingsProvider = this.serviceProvider.GetService<SettingsProvider>();
         settingsProvider.Init();
@@ -54,17 +56,11 @@ public partial class App : Application
         {
             desktop.Exit += OnExit;
             
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = vm,
-            };
+            desktop.MainWindow = v;
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
-            singleViewPlatform.MainView = new MainWindow
-            {
-                DataContext = vm
-            };
+            singleViewPlatform.MainView = v;
         }
 
         base.OnFrameworkInitializationCompleted();

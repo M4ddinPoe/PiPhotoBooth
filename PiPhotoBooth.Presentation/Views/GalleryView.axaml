@@ -2,7 +2,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:PiPhotoBooth.ViewModels"
+             xmlns:model="clr-namespace:PiPhotoBooth.Model;assembly=PiPhotoBooth.Core"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:GalleryViewModel"
              x:Class="PiPhotoBooth.Views.GalleryView">
-    Welcome to Avalonia!
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <viewModels:GalleryViewModel/>
+    </Design.DataContext>
+
+    <ListBox ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedPhoto}"
+             Background="Transparent" Margin="0 20">
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel />
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+        <ListBox.DataTemplates>
+            <DataTemplate x:DataType="model:Photo">
+                <Image Source="{Binding Path}"></Image>
+            </DataTemplate>
+        </ListBox.DataTemplates>
+    </ListBox>
 </UserControl>
