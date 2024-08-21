@@ -1,5 +1,6 @@
 namespace PiPhotoBooth.ViewModels;
 
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Media;
@@ -38,11 +39,12 @@ public sealed class PhotoViewModel : ViewModelBase
 
     public PhotoViewModel(
         IMakePhoto makePhoto,
-        ILoadLastPhoto loadLastPhoto)
+        ILoadLastPhoto loadLastPhoto, IDeleteLastPhoto deleteLastPhoto)
     {
         this.makePhoto = makePhoto;
         this.loadLastPhoto = loadLastPhoto;
-        
+        this.deleteLastPhoto = deleteLastPhoto;
+
         this.IsThreeSecondsTimerSelected = true;
         this.IsPhotoButtonVisible = true;
         this.IsCountdownLabelVisible = false;
@@ -137,8 +139,15 @@ public sealed class PhotoViewModel : ViewModelBase
 
     public async Task DiscardPhotoAsync()
     {
-        await this.deleteLastPhoto.ExecuteAsync();   
-        await this.previewCancellationTokenSource.CancelAsync();
+        try
+        {
+            await this.deleteLastPhoto.ExecuteAsync();   
+            await this.previewCancellationTokenSource.CancelAsync();
+        }
+        catch (Exception e)
+        {
+            // todo: error handling
+        }
     }
     
     private async Task TakeNewPhoto()
@@ -223,7 +232,15 @@ public sealed class PhotoViewModel : ViewModelBase
         this.IsLoadPhotoProgressBarVisible = false;
 
         this.IsLastImageVisible = true;
-        await Task.Delay(PreviewTimeInMs, previewCancellationToken);
+
+        try
+        {
+            await Task.Delay(PreviewTimeInMs, previewCancellationToken);
+        }
+        catch (TaskCanceledException)
+        {
+        }
+        
         this.IsLastImageVisible = false;
     }
 
