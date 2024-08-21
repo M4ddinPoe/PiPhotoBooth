@@ -1,5 +1,7 @@
 namespace PiPhotoBooth.ViewModels;
 
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
@@ -9,8 +11,11 @@ using UseCases;
 
 public sealed class PhotoViewModel : ViewModelBase
 {
+    private const int PreviewTimeInMs = 10_000;
+    
     private readonly IMakePhoto makePhoto;
     private readonly ILoadLastPhoto loadLastPhoto;
+    private readonly IDeleteLastPhoto deleteLastPhoto;
     
     private bool isThreeSecondsTimerSelected;
     private bool isFiveSecondsTimerSelected;
@@ -30,13 +35,16 @@ public sealed class PhotoViewModel : ViewModelBase
     private Bitmap? lastImage;
     private bool isLastImageVisible;
 
+    private CancellationTokenSource previewCancellationTokenSource = new();
+
     public PhotoViewModel(
         IMakePhoto makePhoto,
-        ILoadLastPhoto loadLastPhoto)
+        ILoadLastPhoto loadLastPhoto, IDeleteLastPhoto deleteLastPhoto)
     {
         this.makePhoto = makePhoto;
         this.loadLastPhoto = loadLastPhoto;
-        
+        this.deleteLastPhoto = deleteLastPhoto;
+
         this.IsThreeSecondsTimerSelected = true;
         this.IsPhotoButtonVisible = true;
         this.IsCountdownLabelVisible = false;
@@ -123,6 +131,24 @@ public sealed class PhotoViewModel : ViewModelBase
     {
         await this.TakeNewPhoto();
     }
+
+    public async Task KeepPhoto()
+    {
+        await this.previewCancellationTokenSource.CancelAsync();
+    }
+
+    public async Task DiscardPhotoAsync()
+    {
+        try
+        {
+            await this.deleteLastPhoto.ExecuteAsync();   
+            await this.previewCancellationTokenSource.CancelAsync();
+        }
+        catch (Exception e)
+        {
+            // todo: error handling
+        }
+    }
     
     private async Task TakeNewPhoto()
     {
@@ -151,7 +177,7 @@ public sealed class PhotoViewModel : ViewModelBase
             
             this.CountdownLabelText = countdown.ToString();
             this.ProgressBarValue = percentage;
-
+            
             await Task.Delay(1000);
         }
         
@@ -189,6 +215,9 @@ public sealed class PhotoViewModel : ViewModelBase
 
     private async Task ShowPhoto()
     {
+        this.previewCancellationTokenSource = new CancellationTokenSource();
+        var previewCancellationToken = previewCancellationTokenSource.Token;
+
         var maybeStream = await this.loadLastPhoto.ExecuteAsync();
 
         if (maybeStream.HasNoValue)
@@ -203,7 +232,15 @@ public sealed class PhotoViewModel : ViewModelBase
         this.IsLoadPhotoProgressBarVisible = false;
 
         this.IsLastImageVisible = true;
-        await Task.Delay(3000);
+
+        try
+        {
+            await Task.Delay(PreviewTimeInMs, previewCancellationToken);
+        }
+        catch (TaskCanceledException)
+        {
+        }
+        
         this.IsLastImageVisible = false;
     }
 
