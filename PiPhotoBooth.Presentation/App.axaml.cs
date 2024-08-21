@@ -30,7 +30,7 @@ public partial class App : Application
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
             .Build();
         
-        var configuration = config.GetRequiredSection("PhotoBooth").Get<Configuration.Configuration>();
+        //var configuration = config.GetRequiredSection("PhotoBooth").Get<Configuration.Configuration>();
 
         // Register all the services needed for the application to run
         var collection = new ServiceCollection();
@@ -39,7 +39,7 @@ public partial class App : Application
         collection.AddRepositoryServices();
         collection.AddFakeCameraService();
         collection.AddGPhoto2CameraService();
-        collection.AddSingleton(configuration);
+        //collection.AddSingleton(configuration);
 
         // Creates a ServiceProvider containing services from the provided IServiceCollection
         this.serviceProvider = collection.BuildServiceProvider();
