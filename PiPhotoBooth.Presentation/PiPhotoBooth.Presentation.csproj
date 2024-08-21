@@ -9,6 +9,10 @@
         <RootNamespace>PiPhotoBooth</RootNamespace>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <ApplicationIcon>Assets/piPhotoBooth.ico</ApplicationIcon>
+    </PropertyGroup>
+    
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
