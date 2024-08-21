@@ -9,7 +9,7 @@
         x:Class="PiPhotoBooth.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         WindowState="{Binding SelectedWindowState}"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/piPhotoBooth.ico"
         Title="PiPhotoBooth.Presentation">
 
     <Design.DataContext>
