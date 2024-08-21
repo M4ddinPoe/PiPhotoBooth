@@ -21,10 +21,48 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         
-        <Image 
-            Source="{Binding LastImage}"
-            IsVisible="{Binding IsLastImageVisible}"
-            Grid.RowSpan="2"></Image>
+        <Grid 
+            IsVisible="{Binding IsLastImageVisible}" 
+            Grid.RowSpan="2">
+            <Image 
+                Source="{Binding LastImage}" />
+            <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <controls:FloatingButton 
+                    Width="150" 
+                    Margin=" 8 4"
+                    FontSize="18"
+                    Background="ForestGreen"
+                    Foreground="White"
+                    Command="{Binding KeepPhoto}">
+                    <StackPanel Orientation="Horizontal" Height="24">
+                        <Viewbox Stretch="Fill"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch">
+                            <avalonia:MaterialIcon Kind="Plus" Width="24" Height="24" />
+                        </Viewbox>
+                        <TextBlock Margin="8,0" Text="Behalten"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </controls:FloatingButton>
+                <controls:FloatingButton
+                    Width="150"
+                    Margin=" 8 4"
+                    FontSize="18"
+                    Background="OrangeRed"
+                    Foreground="White"
+                    Command="{Binding DiscardPhotoAsync}">
+                    <StackPanel Orientation="Horizontal" Height="24">
+                        <Viewbox Stretch="Fill"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch">
+                            <avalonia:MaterialIcon Kind="Delete" Width="24" Height="24" />
+                        </Viewbox>
+                        <TextBlock Margin="8,0" Text="Wegwerfen"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </controls:FloatingButton>
+            </WrapPanel>
+        </Grid>
         
         <TextBlock 
             x:Name="CountdownLabel"
@@ -70,7 +108,8 @@
         
         <WrapPanel 
             Grid.Row="1" 
-            HorizontalAlignment="Center">
+            HorizontalAlignment="Center"
+            IsVisible="{Binding IsPhotoButtonVisible}">
             <RadioButton 
                 GroupName="WaitSeconds" 
                 Margin="10 0" 

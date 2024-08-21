@@ -1,5 +1,6 @@
 namespace PiPhotoBooth.ViewModels;
 
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
@@ -9,8 +10,11 @@ using UseCases;
 
 public sealed class PhotoViewModel : ViewModelBase
 {
+    private const int PreviewTimeInMs = 10_000;
+    
     private readonly IMakePhoto makePhoto;
     private readonly ILoadLastPhoto loadLastPhoto;
+    private readonly IDeleteLastPhoto deleteLastPhoto;
     
     private bool isThreeSecondsTimerSelected;
     private bool isFiveSecondsTimerSelected;
@@ -29,6 +33,8 @@ public sealed class PhotoViewModel : ViewModelBase
     
     private Bitmap? lastImage;
     private bool isLastImageVisible;
+
+    private CancellationTokenSource previewCancellationTokenSource = new();
 
     public PhotoViewModel(
         IMakePhoto makePhoto,
@@ -123,6 +129,17 @@ public sealed class PhotoViewModel : ViewModelBase
     {
         await this.TakeNewPhoto();
     }
+
+    public async Task KeepPhoto()
+    {
+        await this.previewCancellationTokenSource.CancelAsync();
+    }
+
+    public async Task DiscardPhotoAsync()
+    {
+        await this.deleteLastPhoto.ExecuteAsync();   
+        await this.previewCancellationTokenSource.CancelAsync();
+    }
     
     private async Task TakeNewPhoto()
     {
@@ -151,7 +168,7 @@ public sealed class PhotoViewModel : ViewModelBase
             
             this.CountdownLabelText = countdown.ToString();
             this.ProgressBarValue = percentage;
-
+            
             await Task.Delay(1000);
         }
         
@@ -189,6 +206,9 @@ public sealed class PhotoViewModel : ViewModelBase
 
     private async Task ShowPhoto()
     {
+        this.previewCancellationTokenSource = new CancellationTokenSource();
+        var previewCancellationToken = previewCancellationTokenSource.Token;
+
         var maybeStream = await this.loadLastPhoto.ExecuteAsync();
 
         if (maybeStream.HasNoValue)
@@ -203,7 +223,7 @@ public sealed class PhotoViewModel : ViewModelBase
         this.IsLoadPhotoProgressBarVisible = false;
 
         this.IsLastImageVisible = true;
-        await Task.Delay(3000);
+        await Task.Delay(PreviewTimeInMs, previewCancellationToken);
         this.IsLastImageVisible = false;
     }
 

@@ -124,4 +124,14 @@ public sealed class Repository : IRepository
 
         return entity?.ToModel() ?? Maybe<Photo>.Nothing;
     }
+    
+    public async Task<Maybe<Photo>> DeleteLastPhoto()
+    {
+        using var database = new LiteDatabaseAsync(this.connectionString);
+        var col = database.GetCollection<Entities.Photo>("photos");
+        var entity = await col.Query().OrderByDescending(photo => photo.Taken).FirstOrDefaultAsync();
+
+        col.DeleteAsync(entity.Id);
+        return entity?.ToModel() ?? Maybe<Photo>.Nothing;
+    }
 }
