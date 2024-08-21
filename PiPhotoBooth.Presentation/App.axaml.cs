@@ -39,6 +39,7 @@ public partial class App : Application
         collection.AddRepositoryServices();
         collection.AddFakeCameraService();
         collection.AddGPhoto2CameraService();
+        collection.AddMediator();
         //collection.AddSingleton(configuration);
 
         // Creates a ServiceProvider containing services from the provided IServiceCollection

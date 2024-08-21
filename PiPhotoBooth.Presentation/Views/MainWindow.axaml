@@ -73,6 +73,12 @@
                 </TabItem>
             </TabControl.Items>
         </TabControl>
+        
+        <controls:SnackbarHost x:Name="SnackbarHost">
+            <Grid Background="DarkRed" Margin="12">
+                <TextBlock Foreground="White" Margin="12 8">This is my Error!!</TextBlock>
+            </Grid>
+        </controls:SnackbarHost>
     </Grid>
 
 </Window>
