@@ -10,6 +10,7 @@
         x:Class="PiPhotoBooth.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         WindowState="{Binding SelectedWindowState}"
+        SystemDecorations="{Binding SelectedSystemDecorations}"
         Icon="/Assets/piPhotoBooth.ico"
         Title="PiPhotoBooth.Presentation">
 

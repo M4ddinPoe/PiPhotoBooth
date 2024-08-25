@@ -15,6 +15,7 @@ public class SettingsWindowViewModel : ViewModelBase
 
     private string dataDirectory;
     private bool isFakeCameraControlEnabled;
+    private bool isFullscreenEnabled;
     
     public SettingsWindowViewModel(SettingsProvider settingsProvider, IMediator mediator)
     {
@@ -36,11 +37,17 @@ public class SettingsWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref this.isFakeCameraControlEnabled, value);
     }
 
+    public bool IsFullscreenEnabled
+    {
+        get => this.isFullscreenEnabled;
+        set => this.RaiseAndSetIfChanged(ref this.isFullscreenEnabled, value);
+    }
+
     public async void SaveAsync()
     {
         try
         {
-            var settings = new Settings(this.DataDirectory, this.IsFakeCameraControlEnabled);
+            var settings = new Settings(this.DataDirectory, this.IsFakeCameraControlEnabled, this.IsFullscreenEnabled);
             await this.settingsProvider.UpdateSettings(settings);
         }
         catch (Exception exception)
@@ -56,6 +63,7 @@ public class SettingsWindowViewModel : ViewModelBase
         {
             this.DataDirectory = this.settingsProvider.Settings.DataDirectory;
             this.IsFakeCameraControlEnabled = this.settingsProvider.Settings.IsFakeCameraControlEnabled;
+            this.isFullscreenEnabled = this.settingsProvider.Settings.IsFullScreenEnabled;
         }
         catch (Exception exception)
         {

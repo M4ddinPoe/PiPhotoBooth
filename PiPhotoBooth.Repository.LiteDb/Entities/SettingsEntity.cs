@@ -7,4 +7,6 @@ internal sealed class SettingsEntity
     public string DataDirectory { get; init; }
     
     public bool IsFakeCameraControlEnabled { get; init; }
+    
+    public bool? IsFullscreenEnable { get; init; }
 }

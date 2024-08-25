@@ -14,46 +14,57 @@
         <TabControl.Items>
             <TabItem Header="Settings">
                 <StackPanel>
-        <TextBlock 
-            FontSize="36" 
-            HorizontalAlignment="Center">Settings</TextBlock>
-        <TextBlock
-            Margin="20 10"
-            FontSize="18">
-            Photo Directory
-        </TextBlock>
-        <WrapPanel>
-            <TextBox 
-                x:Name="PhotoDirectoryTextBox"
-                Width="440"
-                Margin="20 10"
-                Text="{Binding DataDirectory}"
-                IsReadOnly="True" />
-            <Button 
-                Margin="20 10"
-                Width="100"
-                Content="Select"
-                Click="SelectPhotoDirectoryButton_OnClick"/>
-        </WrapPanel>
-        <WrapPanel>
-            <TextBlock
-                Margin="20 10"
-                Width="440"
-                FontSize="18">
-                Use Fake Camera Control
-            </TextBlock>
-            <ToggleSwitch 
-                IsChecked="{Binding IsFakeCameraControlEnabled}"
-                Margin="20 10"/>
-        </WrapPanel>
-        <Button
-            Width="100"
-            Height="60"
-            Margin="0 50 50 0"
-            HorizontalAlignment="Right"
-            Content="Save"
-            Command="{Binding SaveAsync}"/>
-    </StackPanel>
+                    <TextBlock 
+                        FontSize="36" 
+                        HorizontalAlignment="Center">Settings</TextBlock>
+                    <TextBlock
+                        Margin="20 10"
+                        FontSize="18">
+                        Photo Directory
+                    </TextBlock>
+                    <WrapPanel>
+                        <TextBox 
+                            x:Name="PhotoDirectoryTextBox"
+                            Width="440"
+                            Margin="20 10"
+                            Text="{Binding DataDirectory}"
+                            IsReadOnly="True" />
+                        <Button 
+                            Margin="20 10"
+                            Width="100"
+                            Content="Select"
+                            Click="SelectPhotoDirectoryButton_OnClick"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock
+                            Margin="20 10"
+                            Width="440"
+                            FontSize="18">
+                            Use Fake Camera Control
+                        </TextBlock>
+                        <ToggleSwitch 
+                            IsChecked="{Binding IsFakeCameraControlEnabled}"
+                            Margin="20 10"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock
+                            Margin="20 10"
+                            Width="440"
+                            FontSize="18">
+                            Is Fullscreen
+                        </TextBlock>
+                        <ToggleSwitch 
+                            IsChecked="{Binding IsFullscreenEnabled}"
+                            Margin="20 10"/>
+                    </WrapPanel>
+                    <Button
+                        Width="100"
+                        Height="60"
+                        Margin="0 50 50 0"
+                        HorizontalAlignment="Right"
+                        Content="Save"
+                        Command="{Binding SaveAsync}"/>
+                </StackPanel>
             </TabItem>
             <TabItem Header="About">
                 <ScrollViewer>
