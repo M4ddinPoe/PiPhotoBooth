@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:messages="clr-namespace:PiPhotoBooth.Messages"
+             xmlns:viewModels="clr-namespace:PiPhotoBooth.ViewModels"
+             x:DataType="viewModels:ErrorsViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PiPhotoBooth.Views.ErrorsView">
+    
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <viewModels:ErrorsViewModel/>
+    </Design.DataContext>
+
+    <ItemsControl ItemsSource="{Binding ErrorMessages, Mode=OneWay}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="messages:ErrorMessage">
+                <Grid Margin=" 12 52" MaxHeight="50" MaxWidth="800" VerticalAlignment="Top">
+                    <Border Background="OrangeRed" CornerRadius="5">
+                        <TextBlock Foreground="White" Margin="12 8" Text="{Binding Message}" />
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>

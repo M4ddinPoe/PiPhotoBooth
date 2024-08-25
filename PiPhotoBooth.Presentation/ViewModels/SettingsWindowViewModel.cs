@@ -1,35 +1,39 @@
 namespace PiPhotoBooth.ViewModels;
 
 using System;
+using System.Threading.Tasks;
+using Mediator;
+using Messages;
 using Model;
 using ReactiveUI;
 using Services;
-using Settings.UseCases;
 
 public class SettingsWindowViewModel : ViewModelBase
 {
     private readonly SettingsProvider settingsProvider;
+    private readonly IMediator mediator;
 
-    private string _dataDirectory;
-    private bool _isFakeCameraControlEnabled;
+    private string dataDirectory;
+    private bool isFakeCameraControlEnabled;
     
-    public SettingsWindowViewModel(SettingsProvider settingsProvider)
+    public SettingsWindowViewModel(SettingsProvider settingsProvider, IMediator mediator)
     {
         this.settingsProvider = settingsProvider;
+        this.mediator = mediator;
 
         this.LoadSettings();
     }
 
     public string DataDirectory
     {
-        get => this._dataDirectory;
-        set => this.RaiseAndSetIfChanged(ref this._dataDirectory, value);
+        get => this.dataDirectory;
+        set => this.RaiseAndSetIfChanged(ref this.dataDirectory, value);
     }
 
     public bool IsFakeCameraControlEnabled
     {
-        get => this._isFakeCameraControlEnabled;
-        set => this.RaiseAndSetIfChanged(ref this._isFakeCameraControlEnabled, value);
+        get => this.isFakeCameraControlEnabled;
+        set => this.RaiseAndSetIfChanged(ref this.isFakeCameraControlEnabled, value);
     }
 
     public async void SaveAsync()
@@ -41,11 +45,12 @@ public class SettingsWindowViewModel : ViewModelBase
         }
         catch (Exception exception)
         {
-            Console.WriteLine(exception);
+            var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+            await mediator.Publish(message);
         }
     }
     
-    private void LoadSettings()
+    private async Task LoadSettings()
     {
         try
         {
@@ -54,7 +59,8 @@ public class SettingsWindowViewModel : ViewModelBase
         }
         catch (Exception exception)
         {
-            Console.WriteLine(exception);
+            var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+            await mediator.Publish(message);
         }
     }
 }

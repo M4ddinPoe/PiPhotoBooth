@@ -4,14 +4,13 @@ using Avalonia.Markup.Xaml;
 
 namespace PiPhotoBooth.Views;
 
-using Avalonia.ReactiveUI;
 using ViewModels;
 
-public partial class PhotoView : ReactiveUserControl<PhotoViewModel>
+public partial class ErrorsView : UserControl
 {
-    public PhotoView(PhotoViewModel viewModel)
+    public ErrorsView(ErrorsViewModel viewModel)
     {
-        InitializeComponent();
         this.DataContext = viewModel;
+        InitializeComponent();
     }
 }

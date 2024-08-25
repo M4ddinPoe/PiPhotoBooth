@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="PiPhotoBooth.Presentation/App.axaml" value="PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj" />
+        <entry key="PiPhotoBooth.Presentation/Views/ErrorsView.axaml" value="PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj" />
         <entry key="PiPhotoBooth.Presentation/Views/GalleryView.axaml" value="PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj" />
         <entry key="PiPhotoBooth.Presentation/Views/ImageView.axaml" value="PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj" />
         <entry key="PiPhotoBooth.Presentation/Views/MainWindow.axaml" value="PiPhotoBooth.Presentation/PiPhotoBooth.Presentation.csproj" />

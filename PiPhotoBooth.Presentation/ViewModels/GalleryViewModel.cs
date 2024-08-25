@@ -1,19 +1,21 @@
 namespace PiPhotoBooth.ViewModels;
 
+using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
-using DynamicData;
-using Model;
+using Mediator;
+using Messages;
 using UseCases;
 
 public class GalleryViewModel
 {
     private readonly ILoadSavedPhotos loadSavedPhotos;
+    private readonly IMediator mediator;
 
-    public GalleryViewModel(ILoadSavedPhotos loadSavedPhotos)
+    public GalleryViewModel(ILoadSavedPhotos loadSavedPhotos, IMediator mediator)
     {
         this.loadSavedPhotos = loadSavedPhotos;
+        this.mediator = mediator;
     }
 
     public ObservableCollection<ImageViewModel> Photos { get; } = new();
@@ -22,15 +24,23 @@ public class GalleryViewModel
 
     public async Task OnActivated()
     {
-        this.Photos.Clear();
-
-        var photos = await this.loadSavedPhotos.ExecuteAsync();
-
-        foreach (var photo in photos)
+        try
         {
-            var imageViewModel = new ImageViewModel(photo);
-            await imageViewModel.LoadPhoto();
-            this.Photos.Add(imageViewModel);
+            this.Photos.Clear();
+
+            var photos = await this.loadSavedPhotos.ExecuteAsync();
+
+            foreach (var photo in photos)
+            {
+                var imageViewModel = new ImageViewModel(photo);
+                await imageViewModel.LoadPhoto();
+                this.Photos.Add(imageViewModel);
+            }
+        }
+        catch (Exception exception)
+        {
+            var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+            await mediator.Publish(message);
         }
     }
 }
