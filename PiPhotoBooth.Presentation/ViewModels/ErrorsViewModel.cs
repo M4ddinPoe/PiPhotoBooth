@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Mediator;
 using Messages;
 
-public class ErrorsViewModel : INotificationHandler<ErrorMessage>
+public class ErrorsViewModel : ViewModelBase, INotificationHandler<ErrorMessage>
 {
     public ObservableCollection<ErrorMessage> ErrorMessages { get; } = new();
     

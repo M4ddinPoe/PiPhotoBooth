@@ -55,10 +55,10 @@ public class MainWindowViewModel : ViewModelBase
                 var store = services.GetRequiredService<SettingsWindowViewModel>();
                 await ShowDialog.Handle(store);
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                var message = new ErrorMessage { Message = e.Message };
-                mediator.Publish(message);
+                var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+                await mediator.Publish(message);
             }
         });
         
@@ -106,20 +106,36 @@ public class MainWindowViewModel : ViewModelBase
         }
         catch (Exception exception)
         {
-            // todo: Error handling
-            Console.WriteLine(exception);
+            var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+            await mediator.Publish(message);
         }
     }
     
     private async Task CheckOnlineState()
     {
-        IsCameraOnlineBrush = await this.checkCameraConnected.ExecuteAsync()
-            ? Brushes.Green
-            : Brushes.Red;
+        try
+        {
+            IsCameraOnlineBrush = await this.checkCameraConnected.ExecuteAsync()
+                ? Brushes.Green
+                : Brushes.Red;
+        }
+        catch (Exception exception)
+        {
+            var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+            await mediator.Publish(message);
+        }
     }
     
     private async void CheckOnlineTimerOnElapsed(object? sender, ElapsedEventArgs e)
     {
-        await this.CheckOnlineState();
+        try
+        {
+            await this.CheckOnlineState();
+        }
+        catch (Exception exception)
+        {
+            var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+            await mediator.Publish(message);
+        }
     }
 }

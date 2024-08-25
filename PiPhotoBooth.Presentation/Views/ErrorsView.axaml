@@ -14,7 +14,7 @@
         <viewModels:ErrorsViewModel/>
     </Design.DataContext>
 
-    <ItemsControl ItemsSource="{Binding ErrorMessages}">
+    <ItemsControl ItemsSource="{Binding ErrorMessages, Mode=OneWay}">
         <ItemsControl.ItemTemplate>
             <DataTemplate x:DataType="messages:ErrorMessage">
                 <Grid Margin=" 12 52" MaxHeight="50" MaxWidth="800" VerticalAlignment="Top">

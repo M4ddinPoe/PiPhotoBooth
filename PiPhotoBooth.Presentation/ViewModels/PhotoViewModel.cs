@@ -5,6 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Mediator;
+using Messages;
 using ReactiveUI;
 using ResultMonad;
 using UseCases;
@@ -16,6 +18,7 @@ public sealed class PhotoViewModel : ViewModelBase
     private readonly IMakePhoto makePhoto;
     private readonly ILoadLastPhoto loadLastPhoto;
     private readonly IDeleteLastPhoto deleteLastPhoto;
+    private readonly IMediator mediator;
     
     private bool isThreeSecondsTimerSelected;
     private bool isFiveSecondsTimerSelected;
@@ -39,11 +42,14 @@ public sealed class PhotoViewModel : ViewModelBase
 
     public PhotoViewModel(
         IMakePhoto makePhoto,
-        ILoadLastPhoto loadLastPhoto, IDeleteLastPhoto deleteLastPhoto)
+        ILoadLastPhoto loadLastPhoto, 
+        IDeleteLastPhoto deleteLastPhoto,
+        IMediator mediator)
     {
         this.makePhoto = makePhoto;
         this.loadLastPhoto = loadLastPhoto;
         this.deleteLastPhoto = deleteLastPhoto;
+        this.mediator = mediator;
 
         this.IsThreeSecondsTimerSelected = true;
         this.IsPhotoButtonVisible = true;
@@ -144,104 +150,134 @@ public sealed class PhotoViewModel : ViewModelBase
             await this.deleteLastPhoto.ExecuteAsync();   
             await this.previewCancellationTokenSource.CancelAsync();
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            // todo: error handling
+            var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+            await mediator.Publish(message);
         }
     }
     
     private async Task TakeNewPhoto()
     {
-        this.IsPhotoButtonVisible = false;
-        
-        await ShowCountdown();
-        var result = await MakePhoto();
-        
-        if (result.IsSuccess)
+        try
         {
-            await ShowPhoto();
-        }
+            this.IsPhotoButtonVisible = false;
         
-        this.IsPhotoButtonVisible = true;
-        this.LastImage = null;
+            await ShowCountdown();
+            var result = await MakePhoto();
+        
+            if (result.IsSuccess)
+            {
+                await ShowPhoto();
+            }
+        
+            this.IsPhotoButtonVisible = true;
+            this.LastImage = null;
+        }
+        catch (Exception exception)
+        {
+            var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+            await mediator.Publish(message);
+        }
     }
 
     private async Task ShowCountdown()
     {
-        this.IsCountdownLabelVisible = true;
-        this.IsCountdownProgressBarVisible = true;
-
-        for (int countdown = this.GetSelectedTimer(); countdown > 0; countdown--)
+        try
         {
-            var percentage = 100 / this.GetSelectedTimer() * countdown;
+            this.IsCountdownLabelVisible = true;
+            this.IsCountdownProgressBarVisible = true;
+
+            for (int countdown = this.GetSelectedTimer(); countdown > 0; countdown--)
+            {
+                var percentage = 100 / this.GetSelectedTimer() * countdown;
             
-            this.CountdownLabelText = countdown.ToString();
-            this.ProgressBarValue = percentage;
+                this.CountdownLabelText = countdown.ToString();
+                this.ProgressBarValue = percentage;
             
-            await Task.Delay(1000);
-        }
+                await Task.Delay(1000);
+            }
         
-        this.IsCountdownLabelVisible = false;
-        this.IsCountdownProgressBarVisible = false;
+            this.IsCountdownLabelVisible = false;
+            this.IsCountdownProgressBarVisible = false;
+        }
+        catch (Exception exception)
+        {
+            var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+            await mediator.Publish(message);
+        }
     }
 
     private async Task<Result> MakePhoto()
     {
-        this.PhotoTabBackground = Brushes.White;
-        await Task.Delay(150);
-        this.PhotoTabBackground = Brushes.Transparent;
-
-        this.IsLoadPhotoProgressBarVisible = true;
-        var result = await this.makePhoto.ExecuteAsync();
-
-        if (result.IsFailure)
+        try
         {
-            this.IsLoadPhotoProgressBarVisible = false;
-         
-            // todo: error handling
-            // this.ErrorMessage = result.Error;
-            // this.IsErrorMessageVisible = true;
+            this.PhotoTabBackground = Brushes.White;
+            await Task.Delay(150);
+            this.PhotoTabBackground = Brushes.Transparent;
 
-            await Task.Delay(15000);
+            this.IsLoadPhotoProgressBarVisible = true;
+            var result = await this.makePhoto.ExecuteAsync();
+
+            if (result.IsFailure)
+            {
+                this.IsLoadPhotoProgressBarVisible = false;
+                
+                var message = new ErrorMessage { Message = result.Error };
+                await mediator.Publish(message);
             
-            // this.ErrorMessage = string.Empty;
-            // this.IsErrorMessageVisible = false;
+                return Result.Fail();
+            }
+        
+            return Result.Ok();
+        }
+        catch (Exception exception)
+        {
+            var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+            await mediator.Publish(message);
             
             return Result.Fail();
         }
-        
-        return Result.Ok();
     }
 
     private async Task ShowPhoto()
     {
-        this.previewCancellationTokenSource = new CancellationTokenSource();
-        var previewCancellationToken = previewCancellationTokenSource.Token;
-
-        var maybeStream = await this.loadLastPhoto.ExecuteAsync();
-
-        if (maybeStream.HasNoValue)
-        {
-            // todo: show error
-            return;
-        }
-        
-        await using var imageStream = maybeStream.Value;
-        this.LastImage = await Task.Run(() => Bitmap.DecodeToWidth(imageStream, 1024));
-        
-        this.IsLoadPhotoProgressBarVisible = false;
-
-        this.IsLastImageVisible = true;
-
         try
         {
-            await Task.Delay(PreviewTimeInMs, previewCancellationToken);
-        }
-        catch (TaskCanceledException)
-        {
-        }
+            this.previewCancellationTokenSource = new CancellationTokenSource();
+            var previewCancellationToken = previewCancellationTokenSource.Token;
+
+            var maybeStream = await this.loadLastPhoto.ExecuteAsync();
+
+            if (maybeStream.HasNoValue)
+            {
+                var message = new ErrorMessage { Message = "Last photo was not found" };
+                await mediator.Publish(message);
+                return;
+            }
         
-        this.IsLastImageVisible = false;
+            await using var imageStream = maybeStream.Value;
+            this.LastImage = await Task.Run(() => Bitmap.DecodeToWidth(imageStream, 1024));
+        
+            this.IsLoadPhotoProgressBarVisible = false;
+
+            this.IsLastImageVisible = true;
+
+            try
+            {
+                await Task.Delay(PreviewTimeInMs, previewCancellationToken);
+            }
+            catch (TaskCanceledException)
+            {
+            }
+        
+            this.IsLastImageVisible = false;
+        }
+        catch (Exception exception)
+        {
+            var message = new ErrorMessage { Message = $"{exception.GetType()}: {exception.Message}" };
+            await mediator.Publish(message);
+        }
     }
 
     private int GetSelectedTimer()

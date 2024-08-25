@@ -22,8 +22,6 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
         this.PhotoViewPlaceholder.Content = photoView;
         this.GalleryViewPlaceholder.Content = galleryView;
         this.ErrorsViewPlaceholder.Content = errorsView;
-        //this.errorHandler = new ErrorHandler();
-        //this.errorHandler.Register(this.SnackbarHost);
         
         this.WhenActivated(action =>
         {

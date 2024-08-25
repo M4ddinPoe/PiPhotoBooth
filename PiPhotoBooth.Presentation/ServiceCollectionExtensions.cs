@@ -18,7 +18,7 @@ public static class ServiceCollectionExtensions {
         collection.AddTransient<GalleryViewModel>();
 
         collection.AddTransient<ErrorsView>();
-        collection.AddTransient<ErrorsViewModel>();
+        collection.AddScoped<ErrorsViewModel>();
         
         collection.AddTransient<SettingsWindowViewModel>();
     }

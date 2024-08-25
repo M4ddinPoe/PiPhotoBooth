@@ -4,5 +4,5 @@ using Mediator;
 
 public sealed class ErrorMessage : INotification
 {
-    public string Message { get; init; }
+    public string Message { get; init; } = string.Empty;
 }
