@@ -55,14 +55,15 @@ public sealed class Repository : IRepository
         var col = database.GetCollection<SettingsEntity>("settings");
         
         var count = await col.CountAsync();
+        var settingsEntity = settings.ToEntity();
 
         if (count == 0)
         {
-            await col.InsertAsync(settings.ToEntity());
+            await col.InsertAsync(settingsEntity);
         }
         else
         {
-            await col.UpdateAsync(settings.ToEntity());
+            await col.UpdateAsync(settingsEntity);
         }
     }
     

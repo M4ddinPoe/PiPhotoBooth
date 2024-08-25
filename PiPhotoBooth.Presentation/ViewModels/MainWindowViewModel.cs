@@ -10,6 +10,7 @@ using Mediator;
 using Messages;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
+using Services;
 using Settings.UseCases;
 using UseCases;
 using ICommand = System.Windows.Input.ICommand;
@@ -18,9 +19,11 @@ public class MainWindowViewModel : ViewModelBase
 {
     private readonly ICheckCameraConnected checkCameraConnected;
     private readonly ICheckIsInitialized checkIsInitialized;
+    private readonly SettingsProvider settingsProvider;
     private readonly IMediator mediator;
 
     private WindowState selectedWindowState = WindowState.Maximized;
+    private SystemDecorations selectedSystemDecorations = SystemDecorations.Full;
     
     private bool isErrorMessageVisible;
     private string errorMessage;
@@ -31,11 +34,13 @@ public class MainWindowViewModel : ViewModelBase
         ICheckCameraConnected checkCameraConnected, 
         ICheckIsInitialized checkIsInitialized,
         IServiceProvider services,
-        IMediator mediator)
+        IMediator mediator, 
+        SettingsProvider settingsProvider)
     {
         this.checkCameraConnected = checkCameraConnected;
         this.checkIsInitialized = checkIsInitialized;
         this.mediator = mediator;
+        this.settingsProvider = settingsProvider;
 
         this.IsErrorMessageVisible = false;
         this.ErrorMessage = string.Empty;
@@ -54,6 +59,14 @@ public class MainWindowViewModel : ViewModelBase
             {
                 var store = services.GetRequiredService<SettingsWindowViewModel>();
                 await ShowDialog.Handle(store);
+                
+                this.SelectedWindowState = this.settingsProvider.Settings.IsFullScreenEnabled
+                    ? WindowState.FullScreen
+                    : WindowState.Maximized;
+                
+                this.SelectedSystemDecorations = this.settingsProvider.Settings.IsFullScreenEnabled
+                    ? SystemDecorations.None
+                    : SystemDecorations.Full;
             }
             catch (Exception exception)
             {
@@ -73,6 +86,12 @@ public class MainWindowViewModel : ViewModelBase
     {
         get => this.selectedWindowState;
         set => this.RaiseAndSetIfChanged(ref this.selectedWindowState, value);
+    }
+
+    public SystemDecorations SelectedSystemDecorations
+    {
+        get => this.selectedSystemDecorations;
+        set => this.RaiseAndSetIfChanged(ref this.selectedSystemDecorations, value);
     }
     
     public bool IsErrorMessageVisible
@@ -103,6 +122,14 @@ public class MainWindowViewModel : ViewModelBase
             {
                 this.OpenSettingsCommand.Execute(null);
             }
+            
+            this.SelectedWindowState = this.settingsProvider.Settings.IsFullScreenEnabled
+                ? WindowState.FullScreen
+                : WindowState.Maximized;
+
+            this.SelectedSystemDecorations = this.settingsProvider.Settings.IsFullScreenEnabled
+                ? SystemDecorations.None
+                : SystemDecorations.Full;
         }
         catch (Exception exception)
         {
