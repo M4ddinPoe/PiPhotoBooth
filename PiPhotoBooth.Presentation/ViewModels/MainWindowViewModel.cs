@@ -4,18 +4,21 @@ using System;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Timers;
-using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Media;
+using Mediator;
+using Messages;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using Settings.UseCases;
 using UseCases;
+using ICommand = System.Windows.Input.ICommand;
 
 public class MainWindowViewModel : ViewModelBase
 {
     private readonly ICheckCameraConnected checkCameraConnected;
     private readonly ICheckIsInitialized checkIsInitialized;
+    private readonly IMediator mediator;
 
     private WindowState selectedWindowState = WindowState.Maximized;
     
@@ -27,12 +30,12 @@ public class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(
         ICheckCameraConnected checkCameraConnected, 
         ICheckIsInitialized checkIsInitialized,
-        IServiceProvider services)
+        IServiceProvider services,
+        IMediator mediator)
     {
-        // this.loadLastPhoto = loadLastPhoto;
-        // this.makePhoto = makePhoto;
         this.checkCameraConnected = checkCameraConnected;
         this.checkIsInitialized = checkIsInitialized;
+        this.mediator = mediator;
 
         this.IsErrorMessageVisible = false;
         this.ErrorMessage = string.Empty;
@@ -54,7 +57,8 @@ public class MainWindowViewModel : ViewModelBase
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                var message = new ErrorMessage { Message = e.Message };
+                mediator.Publish(message);
             }
         });
         

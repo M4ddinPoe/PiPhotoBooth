@@ -5,18 +5,25 @@ namespace PiPhotoBooth.Views;
 using System.Threading.Tasks;
 using Avalonia.ReactiveUI;
 using ReactiveUI;
+using Services;
 using ViewModels;
 
 public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 {
+    //private readonly ErrorHandler errorHandler;
+    
     public MainWindow(
         PhotoView photoView,
-        GalleryView galleryView)
+        GalleryView galleryView,
+        ErrorsView errorsView)
     {
         InitializeComponent();
 
         this.PhotoViewPlaceholder.Content = photoView;
         this.GalleryViewPlaceholder.Content = galleryView;
+        this.ErrorsViewPlaceholder.Content = errorsView;
+        //this.errorHandler = new ErrorHandler();
+        //this.errorHandler.Register(this.SnackbarHost);
         
         this.WhenActivated(action =>
         {
