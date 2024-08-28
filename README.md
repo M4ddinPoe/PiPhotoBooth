@@ -22,6 +22,14 @@ cd PiPhotoBooth.Presentation
 dotnet run
 ```
 
+### Deploy the app
+
+For Linux/Raspberry Pi
+
+```
+dotnet publish -c Release -r linux-arm --self-contained -o ./publish
+``` 
+
 ### Use the app
 
 On the first star the Settings Window will open automatically.
