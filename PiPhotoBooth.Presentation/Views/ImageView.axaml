@@ -7,12 +7,12 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="viewModels:ImageViewModel"
              x:Class="PiPhotoBooth.Views.ImageView">
-    <StackPanel Spacing="5" Width="200">
+    <StackPanel Spacing="5" Width="400">
         <Border CornerRadius="10" ClipToBounds="True">
             <Panel Background="#7FFFFFFF">
-                <Image Width="200" Stretch="Uniform" Source="{Binding Image}" />
+                <Image Width="400" Stretch="Uniform" Source="{Binding Image}" />
             </Panel>
         </Border>
-        <TextBlock Text="{Binding Taken}" HorizontalAlignment="Center" />
+        <TextBlock Text="{Binding Taken}" FontSize="28" HorizontalAlignment="Center" />
     </StackPanel>
 </UserControl>

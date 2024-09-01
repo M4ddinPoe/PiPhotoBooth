@@ -18,7 +18,7 @@
           Background="{Binding PhotoTabBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="100" />
         </Grid.RowDefinitions>
         
         <Grid 
@@ -28,34 +28,34 @@
                 Source="{Binding LastImage}" />
             <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <controls:FloatingButton 
-                    Width="150" 
+                    Width="250" 
                     Margin=" 8 4"
-                    FontSize="18"
+                    FontSize="28"
                     Background="ForestGreen"
                     Foreground="White"
                     Command="{Binding KeepPhoto}">
-                    <StackPanel Orientation="Horizontal" Height="24">
+                    <StackPanel Orientation="Horizontal" Height="32">
                         <Viewbox Stretch="Fill"
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Stretch">
-                            <avalonia:MaterialIcon Kind="Plus" Width="24" Height="24" />
+                            <avalonia:MaterialIcon Kind="Plus" Width="32" Height="32" />
                         </Viewbox>
                         <TextBlock Margin="8,0" Text="Behalten"
                                    VerticalAlignment="Center" />
                     </StackPanel>
                 </controls:FloatingButton>
                 <controls:FloatingButton
-                    Width="150"
+                    Width="250"
                     Margin=" 8 4"
-                    FontSize="18"
+                    FontSize="28"
                     Background="OrangeRed"
                     Foreground="White"
                     Command="{Binding DiscardPhotoAsync}">
-                    <StackPanel Orientation="Horizontal" Height="24">
+                    <StackPanel Orientation="Horizontal" Height="32">
                         <Viewbox Stretch="Fill"
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Stretch">
-                            <avalonia:MaterialIcon Kind="Delete" Width="24" Height="24" />
+                            <avalonia:MaterialIcon Kind="Delete" Width="32" Height="32" />
                         </Viewbox>
                         <TextBlock Margin="8,0" Text="Wegwerfen"
                                    VerticalAlignment="Center" />
@@ -70,14 +70,14 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             IsVisible="{Binding IsCountdownLabelVisible}"
-            FontSize="64"
+            FontSize="160"
             Foreground="RoyalBlue"
             Text="{Binding CountdownLabelText}" />
         <ProgressBar 
             x:Name="ProgressBar"
             Grid.Row="0"
-            Height="200" 
-            Width="200"
+            Height="400" 
+            Width="400"
             Classes="circular" 
             ShowProgressText="False"
             IsVisible="{Binding IsCountdownProgressBarVisible}"
@@ -85,8 +85,8 @@
         
         <ProgressBar 
             Grid.Row="0" 
-            Height="200" 
-            Width="200"
+            Height="400" 
+            Width="400"
             Classes="circular" 
             IsVisible="{Binding IsLoadPhotoProgressBarVisible}"
             IsIndeterminate="True" />
@@ -94,15 +94,15 @@
         <controls:FloatingButton 
             x:Name="PhotoButton"
             Grid.Row="0" 
-            Height="100"
-            Width="100"
+            Height="200"
+            Width="200"
             Classes="Light"
             IsVisible="{Binding IsPhotoButtonVisible}"
             Command="{Binding PhotoButtonActivated}">
             <Viewbox Stretch="Fill"
                      HorizontalAlignment="Stretch"
                      VerticalAlignment="Stretch">
-                <avalonia:MaterialIcon Kind="Photography" Width="32" Height="32" />
+                <avalonia:MaterialIcon Kind="Photography" Width="160" Height="160" />
             </Viewbox>
         </controls:FloatingButton>
         
@@ -112,18 +112,21 @@
             IsVisible="{Binding IsPhotoButtonVisible}">
             <RadioButton 
                 GroupName="WaitSeconds" 
+                FontSize="28"
                 Margin="10 0" 
                 Classes="accent" 
                 IsChecked="{Binding IsThreeSecondsTimerSelected}" 
                 Tag="3">3 Sekunden</RadioButton>
             <RadioButton 
                 GroupName="WaitSeconds" 
+                FontSize="28"
                 Margin="10 0" 
                 Classes="accent" 
                 IsChecked="{Binding IsFiveSecondsTimerSelected}"
                 Tag="5">5 Sekunden</RadioButton>
             <RadioButton 
                 GroupName="WaitSeconds" 
+                FontSize="28"
                 Margin="10 0" 
                 Classes="accent" 
                 Tag="10"
